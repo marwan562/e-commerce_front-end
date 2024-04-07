@@ -1,4 +1,4 @@
-import Cart from "../../../../assets/Svg/Cart";
+import Cart from "@assets/Svg/Cart";
 
 const HeaderBasket = () => {
   return (

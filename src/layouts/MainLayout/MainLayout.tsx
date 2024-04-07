@@ -1,5 +1,6 @@
-import { Header, Footer } from "../../components/common";
-import styles from "./style.module.css";
+import { Header, Footer } from "@componenets/common/index";
+import styles from "@layouts/MainLayout/style.module.css";
+import { Outlet } from "react-router-dom";
 
 const { container, wrapper } = styles;
 
@@ -7,7 +8,9 @@ const MainLayout = () => {
   return (
     <main className={container}>
       <Header />
-      <div className={wrapper}></div>
+      <div className={wrapper}>
+        <Outlet />
+      </div>
       <Footer />
     </main>
   );

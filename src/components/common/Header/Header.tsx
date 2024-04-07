@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Logo from "../../../assets/Svg/Logo.tsx";
-import ShowMenu from "./ShowMenu";
-import ButtonMenu from "./ButtonMenu";
-import HeaderBasket from "../../E-Commerce/layout/HeaderBasket/HeaderBasket.tsx";
+import Logo from "@assets/Svg/Logo.tsx";
+import ShowMenu from "@componenets/common/Header/ShowMenu";
+import ButtonMenu from "@componenets/common/Header/ButtonMenu";
+import HeaderBasket from "@componenets/E-Commerce/layout/HeaderBasket/HeaderBasket";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -11,53 +12,66 @@ const Header = () => {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
-            <a className="block text-teal-600" href="#">
+            <NavLink to={"/"} className="block text-teal-600">
               <span className="sr-only">Home</span>
               <Logo />
-            </a>
+            </NavLink>
           </div>
 
           <div className="hidden md:block">
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                  <NavLink
+                    to={"/"}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-gray-700 text-[17px] transition-all duration-200"
+                        : " text-gray-500 transition hover:text-gray-500/75"
+                    }
                   >
-                    {" "}
-                    Home{" "}
-                  </a>
+                    Home
+                  </NavLink>
                 </li>
 
                 <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                  <NavLink
+                    to={"/about-us"}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-gray-700 text-[17px] transition-all duration-200"
+                        : " text-gray-500 transition hover:text-gray-500/75"
+                    }
                   >
-                    {" "}
-                    About{" "}
-                  </a>
+                    About
+                  </NavLink>
                 </li>
 
                 <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                  <NavLink
+                    to={"/categories"}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-gray-700 text-[17px] transition-all duration-200"
+                        : " text-gray-500 transition hover:text-gray-500/75"
+                    }
                   >
-                    {" "}
-                    Projects{" "}
-                  </a>
+                    Categories
+                  </NavLink>
                 </li>
 
                 <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                  <NavLink
+                    to={"/blog"}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-gray-700 text-[17px] transition-all duration-200"
+                        : " text-gray-500 transition-all hover:text-gray-500/75 duration-200"
+                    }
                   >
                     {" "}
                     Blog{" "}
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </nav>

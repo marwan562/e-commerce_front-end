@@ -1,5 +1,5 @@
-import Logo from "../../../assets/Svg/Logo";
-import styles from "./styles.module.css";
+import Logo from "@assets/Svg/Logo";
+import styles from "@componenets/common/Footer/styles.module.css";
 
 const { footerContainer } = styles;
 

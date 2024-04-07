@@ -1,4 +1,4 @@
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import Header from "@componenets/common/Header/Header";
+import Footer from "@componenets/common/Footer/Footer";
 
 export { Header, Footer };
