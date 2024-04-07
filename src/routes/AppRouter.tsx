@@ -10,12 +10,14 @@ import Products from "@pages/Products";
 import AboutUs from "@pages/AboutUs";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
+import ErrorPage from "@pages/ErrorPage";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
