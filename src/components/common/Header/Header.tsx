@@ -4,7 +4,7 @@ import ShowMenu from "@componenets/common/Header/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/ButtonMenu";
 import HeaderBasket from "@componenets/E-Commerce/layout/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
-import { handleStyleActive } from ".";
+import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -53,20 +53,14 @@ const Header = () => {
           <div className="flex items-center gap-4 ">
             <HeaderBasket />
             <div className="sm:flex sm:gap-4">
-              <a
-                className="rounded-md bg-gray-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                href="#"
-              >
+              <NavLink to={"/login"} className={handleActiveLogin}>
                 Login
-              </a>
+              </NavLink>
 
               <div className="hidden sm:flex">
-                <a
-                  className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-gray-600"
-                  href="#"
-                >
+                <NavLink to={"/register"} className={handleActiveRegister}>
                   Register
-                </a>
+                </NavLink>
               </div>
             </div>
 
