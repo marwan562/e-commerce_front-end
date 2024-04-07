@@ -4,6 +4,7 @@ import ShowMenu from "@componenets/common/Header/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/ButtonMenu";
 import HeaderBasket from "@componenets/E-Commerce/layout/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
+import { handleStyleActive } from ".";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -22,53 +23,25 @@ const Header = () => {
             <nav aria-label="Global">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <NavLink
-                    to={"/"}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-gray-700 text-[17px] transition-all duration-200"
-                        : " text-gray-500 transition hover:text-gray-500/75"
-                    }
-                  >
+                  <NavLink to={"/"} className={handleStyleActive}>
                     Home
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink
-                    to={"/about-us"}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-gray-700 text-[17px] transition-all duration-200"
-                        : " text-gray-500 transition hover:text-gray-500/75"
-                    }
-                  >
+                  <NavLink to={"/about-us"} className={handleStyleActive}>
                     About
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink
-                    to={"/categories"}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-gray-700 text-[17px] transition-all duration-200"
-                        : " text-gray-500 transition hover:text-gray-500/75"
-                    }
-                  >
+                  <NavLink to={"/categories"} className={handleStyleActive}>
                     Categories
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink
-                    to={"/blog"}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-gray-700 text-[17px] transition-all duration-200"
-                        : " text-gray-500 transition-all hover:text-gray-500/75 duration-200"
-                    }
-                  >
+                  <NavLink to={"/blog"} className={handleStyleActive}>
                     {" "}
                     Blog{" "}
                   </NavLink>
