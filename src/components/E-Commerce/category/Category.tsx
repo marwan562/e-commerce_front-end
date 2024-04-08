@@ -2,7 +2,7 @@ const Category = () => {
   return (
     <a
       href="#"
-      className="group relative opacity-85  transition-all duration-200  hover:opacity-100 block hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl  hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] "
+      className="group relative opacity-90  transition-all duration-200  hover:opacity-100 block hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl  hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s] "
     >
       <div className="relative h-[350px] sm:h-[450px]">
         <img
