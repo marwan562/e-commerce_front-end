@@ -32,7 +32,7 @@ const Product = () => {
           New{" "}
         </span>
 
-        <h3 className="mt-4 text-lg font-medium text-gray-900">Robot Toy</h3>
+        <h3 className="mt-4 text-lg font-medium text-gray-900">Robot Tday</h3>
 
         <p className="mt-1.5 text-sm text-gray-700">$14.99</p>
 
