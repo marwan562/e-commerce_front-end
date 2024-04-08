@@ -9,7 +9,7 @@ import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   return (
-    <header className="bg-white drop-shadow-xl">
+    <header className="bg-white drop-shadow-xl ">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
