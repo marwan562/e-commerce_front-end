@@ -11,6 +11,7 @@ import AboutUs from "@pages/AboutUs";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
 import ErrorPage from "@pages/ErrorPage";
+import Carts from "@pages/Carts";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -28,11 +29,9 @@ const AppRouter = () => {
           element: <Categories />,
         },
         {
-          path: "/products/:prefix",
+          path: "/categories/products/:prefix",
           element: <Products />,
           loader: ({ params }) => {
-            console.log(params.prefix);
-
             if (
               typeof params.prefix !== "string" ||
               !/^[a-z]+$/i.test(params.prefix)
@@ -45,6 +44,10 @@ const AppRouter = () => {
 
             return true;
           },
+        },
+        {
+          path: "/carts",
+          element: <Carts />,
         },
         {
           path: "/about-us",
