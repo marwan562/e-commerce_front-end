@@ -1,17 +1,8 @@
-import { actGetCategories } from "@toolkit/categories/categoriesSlice";
-import { useAppSelector, useAppDispatch } from "@toolkit/hooks";
-import { useEffect } from "react";
+import useGetCategories from "@hooks/useGetCategories";
 import CategoryList from "./CategoryList";
 
 const Category = () => {
-  const dispatch = useAppDispatch();
-  const { status, records, error } = useAppSelector(
-    (state) => state.categories
-  );
-
-  useEffect(() => {
-    dispatch(actGetCategories());
-  }, [dispatch]);
+  const { records, status, error } = useGetCategories();
 
   let recordsCategory;
   //Pending

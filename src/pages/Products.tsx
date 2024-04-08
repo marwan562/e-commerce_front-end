@@ -1,23 +1,15 @@
 import { Product } from "@componenets/E-Commerce";
+import { useParams } from "react-router-dom";
 
 const Products = () => {
+  const { prefix } = useParams();
   return (
-    <div className="  mb-6  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 sm:px-3 gap-[40px]">
-      <div>
-        <Product />
-      </div>
-      <div>
-        <Product />
-      </div>
-      <div>
-        <Product />
-      </div>
-      <div>
-        <Product />
-      </div>
-      <div>
-        <Product />
-      </div>
+    <div className=" ">
+      <h1 className=" text-4xl text-center font-medium ">
+        Prodcts about:<span className=" text-4xl"> {prefix}</span>
+      </h1>
+      <br />
+      <hr className="mb-3" />
       <div>
         <Product />
       </div>
