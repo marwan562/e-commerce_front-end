@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "@assets/Svg/Logo.tsx";
 import ShowMenu from "@componenets/common/Header/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/ButtonMenu";
-import HeaderBasket from "@componenets/E-Commerce/layout/HeaderBasket/HeaderBasket";
+import HeaderBasket from "@componenets/E-Commerce/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 
