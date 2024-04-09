@@ -1,6 +1,15 @@
+import { addToCart } from "@toolkit/Cart/CartSlice";
 import { TResponseProducts } from "@toolkit/common/types";
+import { useAppDispatch } from "@toolkit/hooks";
 
-const ProductList = ({ title, price, img }: TResponseProducts) => {
+const ProductList = ({ id, title, price, img }: TResponseProducts) => {
+  const dispatch = useAppDispatch();
+
+  const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    dispatch(addToCart(id));
+  };
+
   return (
     <>
       <a href="#" className="group relative block overflow-hidden">
@@ -49,7 +58,10 @@ const ProductList = ({ title, price, img }: TResponseProducts) => {
           <p className="mt-1.5 text-sm text-gray-700">${price}</p>
 
           <form className="mt-4">
-            <button className="block w-full rounded bg-gray-400 p-4 text-sm font-medium transition hover:scale-105">
+            <button
+              onClick={addToCartHandler}
+              className="block w-full rounded bg-gray-400 p-4 text-sm font-medium transition hover:scale-105"
+            >
               Add to Cart
             </button>
           </form>

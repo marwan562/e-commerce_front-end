@@ -21,6 +21,7 @@ export type TResponseProducts = {
   price: string;
   cat_prefix: string;
   img: string;
+  quantity?: number;
 };
 
 export interface IProductsState {
