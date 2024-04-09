@@ -5,7 +5,7 @@ import axios from "axios";
 
 const actGetProductsByCatPrefix = createAsyncThunk(
   "products/actGetProductsByCatPrefix",
-  async (prefix, thunkAPI) => {
+  async (prefix:string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
     try {

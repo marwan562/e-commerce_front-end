@@ -23,12 +23,18 @@ const ProductList = ({ title, price, img }: TResponseProducts) => {
           </svg>
         </button>
 
-        <img
-          loading="lazy"
-          src={img}
-          alt={title}
-          className="h-64 w-full object-cover z-10 transition duration-500 group-hover:scale-105 sm:h-72"
-        />
+        {img ? (
+          <div className=" h-64 w-full   ">
+            <img
+              loading="lazy"
+              src={img}
+              alt={title}
+              className=" h-64 w-full object-cover z-10 transition duration-500 group-hover:scale-105 sm:h-72"
+            />
+          </div>
+        ) : (
+          <div className="h-64 w-full animate-pulse bg-gray-200 "></div>
+        )}
 
         <div className="relative border border-gray-100 bg-white p-6">
           <span className="whitespace-nowrap bg-gray-400 px-3 py-1.5 text-xs font-medium">
@@ -36,7 +42,9 @@ const ProductList = ({ title, price, img }: TResponseProducts) => {
             New{" "}
           </span>
 
-          <h3 className="mt-4 text-lg font-medium text-gray-900">{title}</h3>
+          <h3 title={title} className="mt-4 text-lg font-medium text-gray-900">
+            {title}
+          </h3>
 
           <p className="mt-1.5 text-sm text-gray-700">${price}</p>
 
