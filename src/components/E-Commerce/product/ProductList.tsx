@@ -1,9 +1,11 @@
 import { addToCart } from "@toolkit/Cart/CartSlice";
 import { TResponseProducts } from "@toolkit/common/types";
-import { useAppDispatch } from "@toolkit/hooks";
+import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
 import toast, { Toaster } from "react-hot-toast";
+import ButtonsQuantity from "./ButtonsQuantity";
 
 const ProductList = ({ id, title, price, img }: TResponseProducts) => {
+  const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
@@ -61,12 +63,16 @@ const ProductList = ({ id, title, price, img }: TResponseProducts) => {
           <p className="mt-1.5 text-sm text-gray-700">${price}</p>
 
           <form className="mt-4">
-            <button
-              onClick={addToCartHandler}
-              className="block w-full rounded bg-gray-400 p-4 text-sm font-medium transition hover:scale-105"
-            >
-              Add to Cart
-            </button>
+            {!items[id] ? (
+              <button
+                onClick={addToCartHandler}
+                className="block w-full rounded bg-gray-400 p-4 text-sm font-medium transition hover:scale-105"
+              >
+                Add to Cart
+              </button>
+            ) : (
+              <ButtonsQuantity id={id} items={items} />
+            )}
           </form>
         </div>
       </a>
