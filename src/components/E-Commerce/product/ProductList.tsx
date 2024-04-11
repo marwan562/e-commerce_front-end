@@ -8,9 +8,6 @@ const ProductList = ({ id, title, price, img }: TResponseProducts) => {
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-  console.log(items);
-  
-
   const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(addToCart(id));
