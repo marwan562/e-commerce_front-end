@@ -11,7 +11,7 @@ const Loanding = ({ children, status, error }: Props) => {
   return (
     <div className="   ">
       {status === "pending" ? (
-        <progress className="progress w-[22rem] container  m-auto  pb-[40px]  h-screen flex items-center justify-center"></progress>
+        <progress className="progress container w-2/4  m-auto  pb-[40px]   flex items-center justify-center"></progress>
       ) : status === "failed" ? (
         <div role="alert" className="alert alert-error">
           <svg
@@ -37,4 +37,3 @@ const Loanding = ({ children, status, error }: Props) => {
 };
 
 export default Loanding;
-

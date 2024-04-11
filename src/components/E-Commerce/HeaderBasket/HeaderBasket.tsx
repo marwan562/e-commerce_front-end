@@ -1,8 +1,8 @@
 import Cart from "@assets/Svg/Cart";
-import useGetTotalQuantity from "@hooks/useGetTotalQuantity";
-
+import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors";
+import { useAppSelector } from "@toolkit/hooks";
 const HeaderBasket = () => {
-  const { QuantityAllItems } = useGetTotalQuantity();
+  const QuantityAllItems = useAppSelector(getCartTotalQuantitySelector);
 
   return (
     <button className="  border rounded-full p-1 border-black items-center text-center    relative">

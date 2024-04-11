@@ -1,6 +1,7 @@
 import { addToCart } from "@toolkit/Cart/CartSlice";
 import { TResponseProducts } from "@toolkit/common/types";
 import { useAppDispatch } from "@toolkit/hooks";
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductList = ({ id, title, price, img }: TResponseProducts) => {
   const dispatch = useAppDispatch();
@@ -8,10 +9,12 @@ const ProductList = ({ id, title, price, img }: TResponseProducts) => {
   const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(addToCart(id));
+    toast.success("Successfully Add To Cart!");
   };
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <a href="#" className="group relative block overflow-hidden">
         <button className="absolute end-4 top-4  rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
           <span className="sr-only">Wishlist</span>
