@@ -8,13 +8,15 @@ import {
 
 type TProps = {
   id: number | undefined;
-  items: { [key: number]: number };
+  quantity: number;
+  QuantityResidual: number;
 };
 
-const ButtonsQuantity = ({ id, items }: TProps) => {
+const ButtonsQuantity = ({ id, quantity, QuantityResidual }: TProps) => {
   const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false);
-
   const dispatch = useAppDispatch();
+
+  const quantityRedisualToMax = QuantityResidual <= 0 ? true : false
 
   const IncrementHandler = () => {
     setIsBtnDisabled(true);
@@ -58,14 +60,14 @@ const ButtonsQuantity = ({ id, items }: TProps) => {
         </button>
 
         <div className="h-10 w-full pt-3 rounded border-gray-200 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none">
-          {items[id]}
+          {quantity}
         </div>
 
         <button
-          disabled={isBtnDisabled}
+          disabled={isBtnDisabled || quantityRedisualToMax}
           onClick={IncrementHandler}
           type="button"
-          className="size-10  leading-10 w-[70px]  bg-gray-400 rounded-md text-gray-600 transition hover:opacity-75"
+          className="size-10  disabled:bg-gray-200 disabled:cursor-not-allowed leading-10 w-[70px]  bg-gray-400 rounded-md text-gray-600 transition hover:opacity-75"
         >
           {isBtnDisabled ? (
             <span className="loading loading-spinner mt-2"></span>

@@ -6,7 +6,7 @@ const Products = () => {
   return (
     <div className=" ">
       <h1 className=" text-4xl text-center font-medium ">
-        Prodcts about:<span className=" text-4xl"> {prefix}</span>
+        <span className=" text-4xl"> {prefix?.toUpperCase()},</span> Prodcts
       </h1>
       <br />
       <hr className="mb-3" />
