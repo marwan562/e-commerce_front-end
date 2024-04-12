@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GlobalBaseURL } from "@services/globalAxsios";
+import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { TResponseCategories } from "@toolkit/common/types";
 import axios from "axios";
 

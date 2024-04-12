@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GlobalBaseURL } from "@services/globalAxsios";
+import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { TResponseProducts } from "@toolkit/common/types";
 import axios from "axios";
 
 const actGetProductsByCatPrefix = createAsyncThunk(
   "products/actGetProductsByCatPrefix",
-  async (prefix:string, thunkAPI) => {
+  async (prefix: string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
     try {
