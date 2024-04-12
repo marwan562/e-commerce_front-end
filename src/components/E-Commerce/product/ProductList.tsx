@@ -1,3 +1,4 @@
+
 import { addToCart } from "@toolkit/Cart/CartSlice";
 import { TResponseProducts } from "@toolkit/common/types";
 import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
@@ -11,7 +12,7 @@ const ProductList = ({ id, title, price, img }: TResponseProducts) => {
   const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(addToCart(id));
-    toast.success("Successfully Add To Cart!");
+    toast.success("Add To Cart Successfully!");
   };
 
   return (

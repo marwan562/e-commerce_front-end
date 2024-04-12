@@ -27,12 +27,10 @@ const CartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const id = action.payload;
-
       delete state.items[id];
     },
     incrementQuantity: (state, action) => {
       const id = action.payload;
-      // or const { id } = action.payload; if like above
 
       if (state.items[id]) {
         state.items[id]++;
@@ -40,14 +38,11 @@ const CartSlice = createSlice({
     },
     decrementQuantity: (state, action) => {
       const id = action.payload;
-      // or const { id } = action.payload; if like above
 
       if (state.items[id]) {
         if (state.items[id] === 1) {
-          // Delete if quantity will go to 0
           delete state.items[id];
         } else {
-          // Decrement otherwise
           state.items[id]--;
         }
       }

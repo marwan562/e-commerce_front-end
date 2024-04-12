@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useAppDispatch } from "@toolkit/hooks";
 import {
   incrementQuantity,
@@ -11,9 +12,12 @@ type TProps = {
 };
 
 const ButtonsQuantity = ({ id, items }: TProps) => {
+  const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false);
+
   const dispatch = useAppDispatch();
 
   const IncrementHandler = () => {
+    setIsBtnDisabled(true);
     dispatch(incrementQuantity(id));
   };
   const DecrementHandler = () => {
@@ -22,6 +26,20 @@ const ButtonsQuantity = ({ id, items }: TProps) => {
   const RemoveHandler = () => {
     dispatch(removeFromCart(id));
   };
+
+  useEffect(() => {
+    if (!isBtnDisabled) return;
+
+    setIsBtnDisabled(true);
+
+    const debounce = setTimeout(() => {
+      setIsBtnDisabled(false);
+    }, 700);
+
+    return () => {
+      clearTimeout(debounce);
+    };
+  }, [isBtnDisabled]);
 
   return (
     <div>
@@ -44,14 +62,19 @@ const ButtonsQuantity = ({ id, items }: TProps) => {
         </div>
 
         <button
+          disabled={isBtnDisabled}
           onClick={IncrementHandler}
           type="button"
           className="size-10  leading-10 w-[70px]  bg-gray-400 rounded-md text-gray-600 transition hover:opacity-75"
         >
-          +
+          {isBtnDisabled ? (
+            <span className="loading loading-spinner mt-2"></span>
+          ) : (
+            "+"
+          )}
         </button>
       </div>
-      <button onClick={RemoveHandler} className="btn btn-error mt-3 w-full ">
+      <button onClick={RemoveHandler} className="btn  btn-error mt-3 w-full ">
         Remove
       </button>
     </div>
