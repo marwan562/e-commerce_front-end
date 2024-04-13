@@ -2,6 +2,7 @@ import useCartButtonsHandler, {
   CartButtonsHandler,
 } from "@hooks/useCartButtonsHandler";
 import { TResponseProducts } from "@toolkit/common/types";
+import { useEffect } from "react";
 
 const CartItemList = ({
   id,
@@ -11,6 +12,8 @@ const CartItemList = ({
   price,
 }: TResponseProducts) => {
   const { RemoveHandler } = useCartButtonsHandler() as CartButtonsHandler;
+
+  
   return (
     <li className="flex items-center gap-4">
       <img src={img} alt="" className="size-20 rounded object-cover" />
