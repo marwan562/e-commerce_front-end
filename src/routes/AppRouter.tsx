@@ -13,7 +13,7 @@ const AboutUs = lazy(() => import("@pages/AboutUs"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
 const ErrorPage = lazy(() => import("@pages/ErrorPage"));
-const Carts = lazy(() => import("@pages/Carts"));
+const Cart = lazy(() => import("@pages/Cart"));
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -48,8 +48,8 @@ const AppRouter = () => {
           },
         },
         {
-          path: "/carts",
-          element: <Carts />,
+          path: "/cart",
+          element: <Cart />,
         },
         {
           path: "/about-us",

@@ -1,4 +1,4 @@
-import Logo from "@assets/Svg/Logo";
+import Logo from "@assets/Svg/LogoSvg";
 import styles from "@componenets/common/Footer/styles.module.css";
 
 const { footerContainer } = styles;

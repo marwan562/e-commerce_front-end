@@ -1,11 +1,16 @@
-const CartMenu = () => {
+import { useNavigate } from "react-router-dom";
+
+type Props = {
+  handleShowCart: () => void;
+};
+const CartMenu = ({ handleShowCart }: Props) => {
+  const navigate = useNavigate();
   return (
-    <div
-      className="relative z-30 w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8"
-      aria-modal="true"
-      role="dialog"
-    >
-      <button className="absolute z-50 end-4 top-4 text-gray-600 transition hover:scale-110">
+    <div className=" absolute mt-[550px]  max-h-fit  z-30 w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
+      <button
+        onClick={handleShowCart}
+        className="absolute z-50 end-4 top-4 text-gray-600 transition hover:scale-110"
+      >
         <span className="sr-only">Close cart</span>
 
         <svg
@@ -58,8 +63,6 @@ const CartMenu = () => {
 
                 <input
                   type="number"
-                  min="1"
-                  value="1"
                   id="Line1Qty"
                   className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                 />
@@ -118,9 +121,6 @@ const CartMenu = () => {
 
                 <input
                   type="number"
-                  min="1"
-                  value="1"
-                  id="Line2Qty"
                   className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                 />
               </form>
@@ -178,9 +178,6 @@ const CartMenu = () => {
 
                 <input
                   type="number"
-                  min="1"
-                  value="1"
-                  id="Line3Qty"
                   className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                 />
               </form>
@@ -208,12 +205,12 @@ const CartMenu = () => {
         </ul>
 
         <div className="space-y-4 text-center">
-          <a
-            href="#"
-            className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
+          <button
+            onClick={() => navigate("/cart")}
+            className="block w-full rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
           >
             View my cart (2)
-          </a>
+          </button>
 
           <a
             href="#"
@@ -223,6 +220,7 @@ const CartMenu = () => {
           </a>
 
           <a
+            onClick={handleShowCart}
             href="#"
             className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
           >

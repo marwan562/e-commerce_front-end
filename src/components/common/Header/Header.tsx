@@ -1,15 +1,19 @@
 import { useState } from "react";
-import Logo from "@assets/Svg/Logo.tsx";
+import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/ButtonMenu";
 import HeaderBasket from "@componenets/E-Commerce/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
-// import CartMenu from "./CartMenu";
+import CartMenu from "./CartMenu";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  // const [showCart, setShowCart] = useState<boolean>(false);
+  const [showCart, setShowCart] = useState<boolean>(true);
+
+  const handleShowCart = () => {
+    setShowCart(!showCart);
+  };
   return (
     <header className="bg-white drop-shadow-xl ">
       <div className=" mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -53,8 +57,8 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4 ">
-            {/* {showCart ? <CartMenu /> : } */}
-            <HeaderBasket />
+            {!showCart && <CartMenu handleShowCart={handleShowCart} />}
+            <HeaderBasket handleShowCart={handleShowCart} />
             <div className="sm:flex sm:gap-4">
               <NavLink to={"/login"} className={handleActiveLogin}>
                 Login

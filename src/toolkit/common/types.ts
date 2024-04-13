@@ -16,7 +16,7 @@ export interface ICategoriesState {
 }
 
 export type TResponseProducts = {
-  id?: number ;
+  id: number ;
   title: string;
   price: number;
   cat_prefix: string;

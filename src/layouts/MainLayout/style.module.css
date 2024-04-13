@@ -2,8 +2,11 @@
   height: 100vw;
   display: flex;
   flex-direction: column;
+  
 }
+
 
 .wrapper {
   margin-top: 30px;
+  max-width: 100%;
 }
