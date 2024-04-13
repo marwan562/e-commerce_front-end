@@ -10,6 +10,12 @@ const useGetProductsByPrefix = () => {
   const { prefix } = useParams();
   const dispatch = useAppDispatch();
   const { records, status, error } = useAppSelector((state) => state.products);
+  const { items } = useAppSelector((state) => state.cart);
+
+  const recordWithQuantity = records.map((el) => ({
+    ...el,
+    quantity: items[el.id],
+  }));
 
   useEffect(() => {
     if (prefix && typeof prefix === "string") {
@@ -21,7 +27,7 @@ const useGetProductsByPrefix = () => {
     };
   }, [dispatch, prefix]);
 
-  return { records, status, error };
+  return { recordWithQuantity, status, error };
 };
 
 export default useGetProductsByPrefix;

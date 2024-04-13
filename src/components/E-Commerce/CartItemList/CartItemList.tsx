@@ -1,19 +1,27 @@
+import { TResponseProducts } from "@toolkit/common/types";
 import useCartButtonsHandler, {
   CartButtonsHandler,
 } from "@hooks/useCartButtonsHandler";
-import { TResponseProducts } from "@toolkit/common/types";
-import { useEffect } from "react";
-
 const CartItemList = ({
   id,
   title,
   img,
   quantity,
   price,
+  max,
 }: TResponseProducts) => {
   const { RemoveHandler } = useCartButtonsHandler() as CartButtonsHandler;
+  const renderOptions = Array(max)
+    .fill(0)
+    .map((_, inx) => {
+      const quantity = ++inx;
+      return (
+        <option title='item' value={quantity} key={quantity}>
+          {quantity}
+        </option>
+      );
+    });
 
-  
   return (
     <li className="flex items-center gap-4">
       <img src={img} alt="" className="size-20 rounded object-cover" />
@@ -38,12 +46,11 @@ const CartItemList = ({
           <div className=" flex justify-center items-center gap-2">
             <div className=" font-semibold text-sm">Quantity:</div>
             <select
+              defaultValue={quantity}
               title="quantity"
               className="select select-sm w-ful w-[52px] max-w-xs"
             >
-              <option value="1">2 </option>
-              <option>2 </option>
-              <option>2 </option>
+              {renderOptions}
             </select>
           </div>
         </form>

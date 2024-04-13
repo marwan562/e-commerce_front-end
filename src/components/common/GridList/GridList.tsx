@@ -1,9 +1,10 @@
 import { TResponseCategories, TStatus } from "@toolkit/common/types";
+import { ReactNode } from "react";
 
 type GridListProps<T> = {
   status: TStatus;
   records: T[];
-  renderItem: (record: T) => JSX.Element;
+  renderItem: (record: T) => ReactNode;
 };
 
 const GridList = <T extends TResponseCategories>({

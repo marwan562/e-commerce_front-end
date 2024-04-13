@@ -7,6 +7,7 @@ import CartItemList from "@componenets/E-Commerce/CartItemList/CartItemList";
 type Props = {
   handleShowCart: () => void;
 };
+
 const CartMenu = ({ handleShowCart }: Props) => {
   const { product, status, error } = useGetProductsById();
   const navigate = useNavigate();
