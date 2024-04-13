@@ -1,47 +1,18 @@
-import { useState, useEffect } from "react";
-import { useAppDispatch } from "@toolkit/hooks";
-import {
-  incrementQuantity,
-  decrementQuantity,
-  removeFromCart,
-} from "@toolkit/Cart/CartSlice";
+import useCartButtonsHandler, { CartButtonsHandler } from "@hooks/useCartButtonsHandler";
 
 type TProps = {
-  id: number | undefined;
+  id: number;
   quantity: number;
   QuantityResidual: number;
 };
 
+
+
 const ButtonsQuantity = ({ id, quantity, QuantityResidual }: TProps) => {
-  const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const { IncrementHandler, DecrementHandler, RemoveHandler, isBtnDisabled } =
+    useCartButtonsHandler() as CartButtonsHandler;
 
-  const quantityRedisualToMax = QuantityResidual <= 0 ? true : false
-
-  const IncrementHandler = () => {
-    setIsBtnDisabled(true);
-    dispatch(incrementQuantity(id));
-  };
-  const DecrementHandler = () => {
-    dispatch(decrementQuantity(id));
-  };
-  const RemoveHandler = () => {
-    dispatch(removeFromCart(id));
-  };
-
-  useEffect(() => {
-    if (!isBtnDisabled) return;
-
-    setIsBtnDisabled(true);
-
-    const debounce = setTimeout(() => {
-      setIsBtnDisabled(false);
-    }, 700);
-
-    return () => {
-      clearTimeout(debounce);
-    };
-  }, [isBtnDisabled]);
+  const quantityRedisualToMax = QuantityResidual <= 0 ? true : false;
 
   return (
     <div>
@@ -52,7 +23,7 @@ const ButtonsQuantity = ({ id, quantity, QuantityResidual }: TProps) => {
 
       <div className="flex items-center  gap-1">
         <button
-          onClick={DecrementHandler}
+          onClick={() => DecrementHandler(id)}
           type="button"
           className="size-10 leading-10  w-[70px]  bg-gray-400 rounded-md text-gray-600 transition hover:opacity-75"
         >
@@ -65,7 +36,7 @@ const ButtonsQuantity = ({ id, quantity, QuantityResidual }: TProps) => {
 
         <button
           disabled={isBtnDisabled || quantityRedisualToMax}
-          onClick={IncrementHandler}
+          onClick={() => IncrementHandler(id)}
           type="button"
           className="size-10  disabled:bg-gray-200 disabled:cursor-not-allowed leading-10 w-[70px]  bg-gray-400 rounded-md text-gray-600 transition hover:opacity-75"
         >
@@ -76,7 +47,10 @@ const ButtonsQuantity = ({ id, quantity, QuantityResidual }: TProps) => {
           )}
         </button>
       </div>
-      <button onClick={RemoveHandler} className="btn  btn-error mt-3 w-full ">
+      <button
+        onClick={() => RemoveHandler(id)}
+        className="btn  btn-error mt-3 w-full "
+      >
         Remove
       </button>
     </div>

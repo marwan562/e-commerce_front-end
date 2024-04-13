@@ -1,6 +1,16 @@
+import useCartButtonsHandler, {
+  CartButtonsHandler,
+} from "@hooks/useCartButtonsHandler";
 import { TResponseProducts } from "@toolkit/common/types";
 
-const CartItemList = ({ title, img, quantity, price }: TResponseProducts) => {
+const CartItemList = ({
+  id,
+  title,
+  img,
+  quantity,
+  price,
+}: TResponseProducts) => {
+  const { RemoveHandler } = useCartButtonsHandler() as CartButtonsHandler;
   return (
     <li className="flex items-center gap-4">
       <img src={img} alt="" className="size-20 rounded object-cover" />
@@ -23,17 +33,22 @@ const CartItemList = ({ title, img, quantity, price }: TResponseProducts) => {
             Quantity{" "}
           </label>
           <div className=" flex justify-center items-center gap-2">
-            <div className=" font-semibold">Quantity:</div>
-            <select  title='quantity' className="select select-sm w-ful w-[80px] max-w-xs">
-              
-              <option value='1'>2 </option>
+            <div className=" font-semibold text-sm">Quantity:</div>
+            <select
+              title="quantity"
+              className="select select-sm w-ful w-[52px] max-w-xs"
+            >
+              <option value="1">2 </option>
               <option>2 </option>
               <option>2 </option>
             </select>
           </div>
         </form>
 
-        <button className="text-gray-600 transition hover:text-red-600">
+        <button
+          onClick={() => RemoveHandler(id)}
+          className="text-gray-600 transition hover:text-red-600"
+        >
           <span className="sr-only">Remove item</span>
 
           <svg
