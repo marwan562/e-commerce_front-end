@@ -16,7 +16,6 @@ const CartSupTotalPrice = ({ product }: Props) => {
     }
   }, 0);
 
-
   return (
     <>
       <dl className="space-y-0.5 text-sm text-gray-700">
@@ -25,8 +24,6 @@ const CartSupTotalPrice = ({ product }: Props) => {
           <dd>${supTotal.toFixed(2)}</dd>
         </div>
       </dl>
-
-    
     </>
   );
 };

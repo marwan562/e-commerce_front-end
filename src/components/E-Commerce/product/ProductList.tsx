@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ButtonsQuantity from "./ButtonsQuantity";
 import { memo } from "react";
 import WishListSvg from "@assets/Svg/WishListSvg";
+import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
 
 const ProductList = memo(
   ({ id, title, price, img, max }: TResponseProducts) => {
@@ -20,6 +21,10 @@ const ProductList = memo(
       toast.success("Add To Cart Successfully!");
     };
 
+    const likeToggelHandler = () => {
+      dispatch(actLikeToggel(id));
+    };
+    
     return (
       <>
         <Toaster position="top-center" reverseOrder={false} />
@@ -44,7 +49,10 @@ const ProductList = memo(
             </span>
             {/* wishlist */}
             <div className=" ">
-              <button className="absolute end-4 top-4  bg-gray-300  rounded-full  p-1.5 text-gray-900 transition hover:text-gray-900/75">
+              <button
+                onClick={likeToggelHandler}
+                className="absolute end-4 top-4  bg-gray-300  rounded-full  p-1.5 text-gray-900 transition hover:text-gray-900/75"
+              >
                 <span className="sr-only">Wishlist</span>
 
                 <WishListSvg />

@@ -4,7 +4,7 @@ import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors";
 import { useAppSelector } from "@toolkit/hooks";
 
 type Props = {
-  handleShowCart: () => void
+  handleShowCart: () => void;
 };
 
 const HeaderBasket = ({ handleShowCart }: Props) => {
@@ -15,7 +15,6 @@ const HeaderBasket = ({ handleShowCart }: Props) => {
     if (!QuantityAllItems) return;
 
     setIsAnimate(true);
-    
 
     const debounce = setTimeout(() => {
       setIsAnimate(false);
@@ -27,14 +26,22 @@ const HeaderBasket = ({ handleShowCart }: Props) => {
   }, [QuantityAllItems]);
 
   return (
-    <button onClick={handleShowCart} className="  border rounded-full p-1 border-black items-center text-center    relative">
-      <div
-        className={`  ${
-          isAnimate ? "animate-ping bg-green-500" : " bg-gray-600"
-        } ease-in bg-gray-600 text-white w-[22px] h-[22px]  -top-2  -right-2 text-sm  text-center rounded-full absolute`}
-      >
-        {QuantityAllItems}
-      </div>
+    <button
+      title="Cart"
+      onClick={handleShowCart}
+      className="  border rounded-full p-1 border-black items-center text-center    relative"
+    >
+      {QuantityAllItems ? (
+        <div
+          className={`  ${
+            isAnimate ? "animate-ping bg-green-500" : " bg-gray-600"
+          } ease-in bg-gray-600 text-white w-[22px] h-[22px]  -top-2  -right-2 text-sm  text-center rounded-full absolute`}
+        >
+          {QuantityAllItems}
+        </div>
+      ) : (
+        ""
+      )}
 
       <div className="p-[2px]">
         <Cart />

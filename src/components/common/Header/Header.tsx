@@ -59,7 +59,9 @@ const Header = () => {
 
           <div className="flex items-center gap-4 ">
             {/* Wish List */}
-            <HeaderWishList/>
+            <HeaderWishList />
+            {/* Space Line */}
+            <div className=" text-3xl mb-[6px]">|</div>
             {/* Cart Menu */}
             {!showCart && <CartMenu handleShowCart={handleShowCart} />}
             <HeaderBasket handleShowCart={handleShowCart} />
