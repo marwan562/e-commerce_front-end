@@ -1,4 +1,3 @@
-
 const WishListSvg = () => {
   return (
     <svg

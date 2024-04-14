@@ -6,6 +6,7 @@ import HeaderBasket from "@componenets/E-Commerce/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 import CartMenu from "./CartMenu/CartMenu";
+import HeaderWishList from "@componenets/E-Commerce/HeaderWishList/HeaderWishList";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -57,13 +58,17 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4 ">
+            {/* Wish List */}
+            <HeaderWishList/>
+            {/* Cart Menu */}
             {!showCart && <CartMenu handleShowCart={handleShowCart} />}
             <HeaderBasket handleShowCart={handleShowCart} />
+            {/* Login */}
             <div className="sm:flex sm:gap-4">
               <NavLink to={"/login"} className={handleActiveLogin}>
                 Login
               </NavLink>
-
+              {/* register */}
               <div className="hidden sm:flex">
                 <NavLink to={"/register"} className={handleActiveRegister}>
                   Register
