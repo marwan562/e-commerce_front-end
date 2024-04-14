@@ -23,6 +23,7 @@ export type TResponseProducts = {
   img: string;
   quantity?: number;
   max: number;
+  isLiked:boolean
 };
 
 export interface IProductsState {

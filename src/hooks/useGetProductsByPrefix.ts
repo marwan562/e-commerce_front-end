@@ -9,7 +9,15 @@ import { useParams } from "react-router-dom";
 const useGetProductsByPrefix = () => {
   const { prefix } = useParams();
   const dispatch = useAppDispatch();
+  const { items } = useAppSelector((state) => state.cart);
+  const wishlistItemId = useAppSelector((state) => state.wishlist.itemsId);
   const { records, status, error } = useAppSelector((state) => state.products);
+
+  const productsFullInfo = records.map((el) => ({
+    ...el,
+    quantity: items[el.id],
+    isLiked: wishlistItemId.includes(el.id),
+  }));
 
   useEffect(() => {
     if (prefix && typeof prefix === "string") {
@@ -21,7 +29,7 @@ const useGetProductsByPrefix = () => {
     };
   }, [dispatch, prefix]);
 
-  return { records, status, error };
+  return { productsFullInfo, status, error };
 };
 
 export default useGetProductsByPrefix;
