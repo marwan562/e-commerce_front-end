@@ -14,7 +14,7 @@ const useGetProductsById = () => {
   }));
 
   useEffect(() => {
-      dispatch(actGetProductsById());
+    dispatch(actGetProductsById());
   }, [dispatch, product.length]);
   return { product, status, error };
 };

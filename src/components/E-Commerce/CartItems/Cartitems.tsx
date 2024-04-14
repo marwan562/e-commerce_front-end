@@ -2,15 +2,17 @@ import { TResponseProducts } from "@toolkit/common/types";
 import CartCheckout from "../CartCheckout/CartCheckout";
 import CartSupTotalPrice from "../CartSubTotalPrice/CartSupTotalPrice";
 import CartItemList from "../CartItemList/CartItemList";
+import CartEmpty from "../CartItemList/CartEmpty";
 
 type Props = {
   product: TResponseProducts[];
+  changeQuantityHandler: (id: number, quantity: number) => void;
 };
 
-const Cartitems = ({ product }: Props) => {
-  const productResult = product.map((item) => (
-    <CartItemList key={item.id} {...item} />
-  ));
+const Cartitems = ({ product , changeQuantityHandler}: Props) => {
+  const productResult =product.length > 0 ?  product.map((item) => (
+    <CartItemList key={item.id} {...item} changeQuantityHandler={changeQuantityHandler} />
+  )) : <CartEmpty/>
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -26,7 +28,7 @@ const Cartitems = ({ product }: Props) => {
             <ul className="space-y-4">{productResult}</ul>
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
               <div className="w-screen max-w-lg space-y-4">
-                <CartSupTotalPrice />
+                <CartSupTotalPrice product={product} />
                 <CartCheckout />
               </div>
             </div>

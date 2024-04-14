@@ -3,14 +3,26 @@ import useGetProductsById from "@hooks/useGetProductsById";
 import { useNavigate } from "react-router-dom";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import CartItemList from "@componenets/E-Commerce/CartItemList/CartItemList";
+import { cartItemChangeQuantity } from "@toolkit/Cart/CartSlice";
+import { useAppDispatch } from "@toolkit/hooks";
+import CartSupTotalPrice from "@componenets/E-Commerce/CartSubTotalPrice/CartSupTotalPrice";
+import CartEmpty from "@componenets/E-Commerce/CartItemList/CartEmpty";
 
 type Props = {
   handleShowCart: () => void;
 };
 
 const CartMenu = ({ handleShowCart }: Props) => {
-  const { product, status, error } = useGetProductsById();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { product, status, error } = useGetProductsById();
+
+  const changeQuantityHandler = (id: number, quantity: number) => {
+    dispatch(cartItemChangeQuantity({ id, quantity }));
+  };
+
+  const lengthCart = product.length;
+
   return (
     <div className=" absolute mt-[550px]  max-h-fit  z-30 w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
       <button
@@ -38,18 +50,28 @@ const CartMenu = ({ handleShowCart }: Props) => {
       <div className="mt-4 space-y-6">
         <ul className="space-y-4">
           <Loanding status={status} error={error}>
-            {product.map((el) => (
-              <CartItemList key={el.id} {...el} />
-            ))}
+            {product.length > 0 ? (
+              product.map((el) => (
+                <CartItemList
+                  changeQuantityHandler={changeQuantityHandler}
+                  key={el.id}
+                  {...el}
+                />
+              ))
+            ) : (
+              <CartEmpty />
+            )}
           </Loanding>
         </ul>
+
+        <CartSupTotalPrice product={product} />
 
         <div className="space-y-4 text-center">
           <button
             onClick={() => navigate("/cart")}
             className="block w-full rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
           >
-            View my cart (2)
+            View my cart ({lengthCart})
           </button>
 
           <a

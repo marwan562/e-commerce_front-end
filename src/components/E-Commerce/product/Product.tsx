@@ -5,12 +5,14 @@ import { GridList } from "@componenets/common";
 import { TResponseProducts } from "@toolkit/common/types";
 
 const Product = () => {
-  const { recordWithQuantity, status, error } = useGetProductsByPrefix();
+  const { records, status, error } = useGetProductsByPrefix();
+
+  
 
   return (
     <Loanding status={status} error={error}>
       <GridList<TResponseProducts>
-        records={recordWithQuantity}
+        records={records}
         status={status}
         renderItem={(record) => <ProductList {...record} />}
       />

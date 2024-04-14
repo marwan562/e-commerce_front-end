@@ -33,6 +33,9 @@ const CartSlice = createSlice({
     removeFromCart: (state, action) => {
       const id = action.payload;
       delete state.items[id];
+      state.productsFullInfo = state.productsFullInfo.filter(
+        (el) => el.id !== action.payload
+      );
     },
     incrementQuantity: (state, action) => {
       const id = action.payload;
@@ -51,6 +54,9 @@ const CartSlice = createSlice({
           state.items[id]--;
         }
       }
+    },
+    cartItemChangeQuantity: (state, action) => {
+      state.items[action.payload.id] = action.payload.quantity;
     },
   },
   extraReducers(builder) {
@@ -78,6 +84,7 @@ export const {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  cartItemChangeQuantity,
 } = CartSlice.actions;
 
 export default CartSlice.reducer;
