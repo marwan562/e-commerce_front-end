@@ -1,9 +1,11 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-//layouts
-import MainLayout from "@layouts/MainLayout/MainLayout";
+//loading page
 import LoadingPage from "@componenets/feedback/LoadingPage/LoadingPage";
+
+//layouts
+const MainLayout = lazy(() => import("@layouts/MainLayout/MainLayout"));
 
 //pages
 const Home = lazy(() => import("@pages/Home"));

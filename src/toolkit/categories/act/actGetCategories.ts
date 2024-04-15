@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { TResponseCategories } from "@toolkit/common/types";
-import axios from "axios";
+import { axiosErrorHandler } from "@utils/index";
 
 const actGetCategories = createAsyncThunk(
   "categories/actGetCategories",
@@ -15,11 +15,7 @@ const actGetCategories = createAsyncThunk(
       const data = res.data;
       return data;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        return rejectWithValue(err.response?.data.message || err.message);
-      } else {
-        return rejectWithValue("An expected error");
-      }
+    return rejectWithValue(axiosErrorHandler(err))
     }
   }
 );

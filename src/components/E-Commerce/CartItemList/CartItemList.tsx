@@ -18,7 +18,6 @@ const CartItemList = memo(
     changeQuantityHandler,
   }: TResponseProducts & Props) => {
     const { RemoveHandler } = useCartButtonsHandler() as CartButtonsHandler;
-    console.log("render");
 
     //renser options listc
     const renderOptions = Array(max)

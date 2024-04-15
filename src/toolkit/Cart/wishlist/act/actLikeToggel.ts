@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
-import axios from "axios";
+import { axiosErrorHandler } from "@utils/index";
 
 const actLikeToggel = createAsyncThunk(
   "wishlist/actLikeToggel",
@@ -20,11 +20,7 @@ const actLikeToggel = createAsyncThunk(
         return { type: "add", id};
       }
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        return rejectWithValue(err?.response?.data?.message || err.message);
-      } else {
-        return rejectWithValue("an unexpected error ");
-      }
+     return rejectWithValue(axiosErrorHandler(err))
     }
   }
 );

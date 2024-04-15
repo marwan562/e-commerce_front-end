@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { TResponseProducts } from "@toolkit/common/types";
 import { RootState } from "@toolkit/index";
-import axios from "axios";
+import { axiosErrorHandler } from "@utils/index";
 
 export const actGetProductsById = createAsyncThunk(
   "CartSlice/actGetProductsById",
@@ -23,11 +23,7 @@ export const actGetProductsById = createAsyncThunk(
       );
       return res.data;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        return rejectWithValue(err.response?.data.message || err.message);
-      } else {
-        return rejectWithValue("An expected error");
-      }
+      return rejectWithValue(axiosErrorHandler(err));
     }
   }
 );

@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom";
-import type { ShowMenu } from "./Types";
-import { handleAciveShowMenu } from ".";
+import { handleAciveShowMenu } from "..";
 
-const ShowMenu = ({ setShowMenu, showMenu }: ShowMenu) => {
+export type TShowMenu = {
+  showMenu: boolean;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ShowMenu = ({ setShowMenu, showMenu }: TShowMenu) => {
   return (
     <section className=" relative      " onClick={() => setShowMenu(!showMenu)}>
       <div className=" absolute   right-[40px] top-[60px]  rounded-md w-[300px] shadow-lg shadow-gray-300 bg-gray-100">

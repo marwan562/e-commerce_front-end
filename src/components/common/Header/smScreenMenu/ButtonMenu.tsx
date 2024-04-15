@@ -1,6 +1,9 @@
-import type { ShowMenu } from "./Types";
+export type TShowMenu = {
+  showMenu: boolean;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const ButtonMenu = ({ setShowMenu, showMenu }: ShowMenu) => {
+const ButtonMenu = ({ setShowMenu, showMenu }: TShowMenu) => {
   return (
     <label className="btn btn-circle swap swap-rotate">
       <input type="checkbox" onClick={() => setShowMenu(!showMenu)} />

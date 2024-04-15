@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
-import axios from "axios";
+import { axiosErrorHandler } from "@utils/index";
 
 const actGetWishlist = createAsyncThunk(
   "wishlist/actGetWishlist",
@@ -21,11 +21,7 @@ const actGetWishlist = createAsyncThunk(
       const res = await GlobalBaseURL.get(`/products?${concatenetedItemId}`);
       return res.data;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        rejectWithValue(err.response?.data.message || err.message);
-      } else {
-        rejectWithValue("an exepcted error ");
-      }
+      return rejectWithValue(axiosErrorHandler(err));
     }
   }
 );

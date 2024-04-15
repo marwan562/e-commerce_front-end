@@ -12,7 +12,6 @@ const useGetWishlist = () => {
   const { items } = useAppSelector((state) => state.cart);
   const wishlistItemId = useAppSelector((state) => state.wishlist.itemsId);
   const dispatch = useAppDispatch();
-  console.log(productFullInfo);
 
   const record = productFullInfo.map((el) => ({
     ...el,
