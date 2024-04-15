@@ -1,4 +1,4 @@
-import { TResponseProducts } from "@toolkit/common/types";
+import { TResponseProducts } from "@customTypes";
 import CartCheckout from "../CartCheckout/CartCheckout";
 import CartSupTotalPrice from "../CartSubTotalPrice/CartSupTotalPrice";
 import CartItemList from "../CartItemList/CartItemList";
@@ -9,10 +9,19 @@ type Props = {
   changeQuantityHandler: (id: number, quantity: number) => void;
 };
 
-const Cartitems = ({ product , changeQuantityHandler}: Props) => {
-  const productResult =product.length > 0 ?  product.map((item) => (
-    <CartItemList key={item.id} {...item} changeQuantityHandler={changeQuantityHandler} />
-  )) : <CartEmpty/>
+const Cartitems = ({ product, changeQuantityHandler }: Props) => {
+  const productResult =
+    product.length > 0 ? (
+      product.map((item) => (
+        <CartItemList
+          key={item.id}
+          {...item}
+          changeQuantityHandler={changeQuantityHandler}
+        />
+      ))
+    ) : (
+      <CartEmpty />
+    );
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">

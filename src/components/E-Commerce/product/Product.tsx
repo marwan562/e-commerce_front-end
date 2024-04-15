@@ -2,7 +2,7 @@ import useGetProductsByPrefix from "@hooks/useGetProductsByPrefix";
 import ProductList from "./ProductList";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import { GridList } from "@componenets/common";
-import { TResponseProducts } from "@toolkit/common/types";
+import { TResponseProducts } from "@customTypes";
 
 const Product = () => {
   const { productsFullInfo, status, error } = useGetProductsByPrefix();

@@ -20,11 +20,10 @@ const useGetProductsByPrefix = () => {
   }));
 
   useEffect(() => {
-    if (prefix && typeof prefix === "string") {
-      dispatch(actGetProductsByCatPrefix(prefix));
-    }
+    const Promise = dispatch(actGetProductsByCatPrefix(prefix as string));
 
     return () => {
+      Promise.abort();
       dispatch(productsCleanUp());
     };
   }, [dispatch, prefix]);

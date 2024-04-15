@@ -6,16 +6,17 @@ import { axiosErrorHandler } from "@utils/index";
 const actGetCategories = createAsyncThunk(
   "categories/actGetCategories",
   async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue, signal } = thunkAPI;
 
     try {
       const res = await GlobalBaseURL.get<TResponseCategories[]>(
-        "http://localhost:5005/categories"
+        "http://localhost:5005/categories",
+        { signal }
       );
       const data = res.data;
       return data;
     } catch (err) {
-    return rejectWithValue(axiosErrorHandler(err))
+      return rejectWithValue(axiosErrorHandler(err));
     }
   }
 );

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TError, TResponseProducts, TStatus } from "@toolkit/common/types";
+import { TError, TResponseProducts, TStatus } from "@customTypes";
 import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors/index";
 import { actGetProductsById } from "./act/actGetProductsById";
 
@@ -87,7 +87,7 @@ export const {
   incrementQuantity,
   decrementQuantity,
   cartItemChangeQuantity,
-  cleanProductsFullInfo
+  cleanProductsFullInfo,
 } = CartSlice.actions;
 
 export default CartSlice.reducer;

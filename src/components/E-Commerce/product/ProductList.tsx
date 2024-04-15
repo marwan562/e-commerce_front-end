@@ -1,5 +1,5 @@
 import { addToCart } from "@toolkit/Cart/CartSlice";
-import { TResponseProducts } from "@toolkit/common/types";
+import { TResponseProducts } from "@customTypes";
 import { useAppDispatch } from "@toolkit/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import ButtonsQuantity from "./ButtonsQuantity";
@@ -9,7 +9,6 @@ import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
 
 const ProductList = memo(
   ({ id, title, price, img, max, quantity, isLiked }: TResponseProducts) => {
-    
     const dispatch = useAppDispatch();
     const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
 

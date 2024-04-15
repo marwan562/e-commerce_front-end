@@ -1,4 +1,4 @@
-import { TError, TStatus } from "@toolkit/common/types";
+import { TError, TStatus } from "@customTypes";
 import { ReactNode } from "react";
 
 type Props = {

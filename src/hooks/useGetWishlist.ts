@@ -20,9 +20,10 @@ const useGetWishlist = () => {
   }));
 
   useEffect(() => {
-    dispatch(actGetWishlist());
+    const Promise = dispatch(actGetWishlist());
 
     return () => {
+      Promise.abort();
       dispatch(cleanWishlist());
     };
   }, [dispatch]);

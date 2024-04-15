@@ -1,4 +1,4 @@
-import { TResponseCategories, TStatus } from "@toolkit/common/types";
+import { TResponseCategories, TStatus } from "@customTypes";
 import { ReactNode } from "react";
 
 type GridListProps<T> = {

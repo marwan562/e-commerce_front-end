@@ -1,4 +1,4 @@
-import { TResponseProducts } from "@toolkit/common/types";
+import { TResponseProducts } from "@customTypes";
 import useCartButtonsHandler, {
   CartButtonsHandler,
 } from "@hooks/useCartButtonsHandler";

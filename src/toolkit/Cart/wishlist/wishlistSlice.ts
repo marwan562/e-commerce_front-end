@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actLikeToggel from "./act/actLikeToggel";
 import actGetWishlist from "./act/actGetWishlist";
-import { TError, TResponseProducts, TStatus } from "@toolkit/common/types";
+import { TError, TResponseProducts, TStatus } from "@customTypes";
 
 type TWishlistState = {
   status: TStatus;
