@@ -53,7 +53,7 @@ const AppRouter = () => {
           element: <Cart />,
         },
         {
-          path: "/washlist",
+          path: "/wishlist",
           element: <Wishlist />,
         },
         {

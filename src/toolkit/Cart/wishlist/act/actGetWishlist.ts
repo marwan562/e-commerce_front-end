@@ -18,7 +18,7 @@ const actGetWishlist = createAsyncThunk(
         .map((el) => `id=${el.productId}`)
         .join("&");
 
-      const res = await GlobalBaseURL.get(`/products?id=${concatenetedItemId}`);
+      const res = await GlobalBaseURL.get(`/products?${concatenetedItemId}`);
       return res.data;
     } catch (err) {
       if (axios.isAxiosError(err)) {

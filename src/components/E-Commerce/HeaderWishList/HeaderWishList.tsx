@@ -1,10 +1,13 @@
 import { useAppSelector } from "@toolkit/hooks";
 import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const HeaderWishList = () => {
   const [isAnimate, setIsAnimate] = useState<boolean>(false);
   const { itemsId } = useAppSelector((state) => state.wishlist);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!itemsId) return;
@@ -22,6 +25,7 @@ const HeaderWishList = () => {
 
   return (
     <button
+    onClick={() => navigate('/wishlist')}
       title="Wishlist"
       className="  border rounded-full p-2 border-black items-center text-center    relative"
     >

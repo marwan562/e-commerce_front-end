@@ -23,7 +23,7 @@ const GridList = <T extends TResponseCategories>({
           ))}
         </div>
       ) : (
-        <p>No Categories</p>
+        <p>No Products</p>
       );
   }
   return recordsCategory;
