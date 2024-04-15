@@ -2,15 +2,23 @@ import { useState } from "react";
 import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/ButtonMenu";
-import HeaderBasket from "@componenets/E-Commerce/HeaderBasket/HeaderBasket";
 import { NavLink } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 import CartMenu from "./CartMenu/CartMenu";
-import HeaderWishList from "@componenets/E-Commerce/HeaderWishList/HeaderWishList";
+import HeaderCounter from "./HeaderCounter/HeaderCounter";
+import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors";
+import { useAppSelector } from "@toolkit/hooks";
+import Cart from "@assets/Svg/CartSvg";
+import { FaRegHeart } from "react-icons/fa";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showCart, setShowCart] = useState<boolean>(true);
+
+  const CartQuantityItems = useAppSelector(getCartTotalQuantitySelector);
+  const WishlistQuantityItems = useAppSelector(
+    (state) => state.wishlist.itemsId.length
+  );
 
   const handleShowCart = () => {
     setShowCart(!showCart);
@@ -59,12 +67,21 @@ const Header = () => {
 
           <div className="flex items-center gap-4 ">
             {/* Wish List */}
-            <HeaderWishList />
+            <HeaderCounter
+              title="wishlist"
+              totalQuantityitems={WishlistQuantityItems}
+              SvgIcon={<FaRegHeart />}
+            />
             {/* Space Line */}
             <div className=" text-3xl mb-[6px]">|</div>
             {/* Cart Menu */}
+            <HeaderCounter
+              title="cart"
+              handleShowCart={handleShowCart}
+              totalQuantityitems={CartQuantityItems}
+              SvgIcon={<Cart />}
+            />
             {!showCart && <CartMenu handleShowCart={handleShowCart} />}
-            <HeaderBasket handleShowCart={handleShowCart} />
             {/* Login */}
             <div className="sm:flex sm:gap-4">
               <NavLink to={"/login"} className={handleActiveLogin}>

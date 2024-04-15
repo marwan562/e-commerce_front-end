@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const HeaderWishList = () => {
+const  HeaderWishList = () => {
   const [isAnimate, setIsAnimate] = useState<boolean>(false);
   const { itemsId } = useAppSelector((state) => state.wishlist);
 

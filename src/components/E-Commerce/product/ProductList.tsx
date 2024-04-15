@@ -9,6 +9,7 @@ import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
 
 const ProductList = memo(
   ({ id, title, price, img, max, quantity, isLiked }: TResponseProducts) => {
+    
     const dispatch = useAppDispatch();
     const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
 
