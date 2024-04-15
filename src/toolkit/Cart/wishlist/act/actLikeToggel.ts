@@ -13,13 +13,11 @@ const actLikeToggel = createAsyncThunk(
       );
 
       if (isRecordExist.data.length > 0) {
-        
-
         await GlobalBaseURL.delete(`/wishlist/${isRecordExist.data[0].id}`);
         return { type: "remove", id };
       } else {
         await GlobalBaseURL.post("/wishlist", { userId: "1", productId: id });
-        return { type: "add", id };
+        return { type: "add", id};
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {

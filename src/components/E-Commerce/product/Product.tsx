@@ -6,7 +6,6 @@ import { TResponseProducts } from "@toolkit/common/types";
 
 const Product = () => {
   const { productsFullInfo, status, error } = useGetProductsByPrefix();
-
   return (
     <Loanding status={status} error={error}>
       <GridList<TResponseProducts>
