@@ -2,7 +2,7 @@ import { GridList } from "@componenets/common";
 import ProductList from "@componenets/E-Commerce/product/ProductList";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import useGetWishlist from "@hooks/useGetWishlist";
-import { TResponseProducts } from "@customTypes";
+import { TResponseProducts } from "@types";
 
 const Wishlist = () => {
   const { record, error, status } = useGetWishlist();

@@ -2,7 +2,7 @@ import useGetCategories from "@hooks/useGetCategories";
 import CategoryList from "./CategoryList";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import { GridList } from "@componenets/common";
-import { TResponseCategories } from "@customTypes";
+import { TResponseCategories } from "@types";
 
 const Category = () => {
   const { records, status, error } = useGetCategories();

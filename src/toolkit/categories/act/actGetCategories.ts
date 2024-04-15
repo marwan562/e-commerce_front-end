@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
-import { TResponseCategories } from "@toolkit/common/types";
+import { TResponseCategories } from "@types";
 import { axiosErrorHandler } from "@utils/index";
 
 const actGetCategories = createAsyncThunk(

@@ -1,4 +1,4 @@
-import { TResponseProducts } from "@customTypes";
+import { TResponseProducts } from "@types";
 
 type Props = {
   product: TResponseProducts[];

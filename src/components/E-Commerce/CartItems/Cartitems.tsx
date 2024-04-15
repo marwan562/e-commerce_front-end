@@ -1,4 +1,4 @@
-import { TResponseProducts } from "@customTypes";
+import { TResponseProducts } from "@types";
 import CartCheckout from "../CartCheckout/CartCheckout";
 import CartSupTotalPrice from "../CartSubTotalPrice/CartSupTotalPrice";
 import CartItemList from "../CartItemList/CartItemList";

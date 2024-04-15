@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
-import { TResponseProducts } from "@toolkit/common/types";
+import { TResponseProducts } from "@types";
 import { axiosErrorHandler } from "@utils/index";
 
 const actGetProductsByCatPrefix = createAsyncThunk(

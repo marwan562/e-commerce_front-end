@@ -1,4 +1,4 @@
-import { TResponseCategories } from "@customTypes";
+import { TResponseCategories } from "@types";
 import { Link } from "react-router-dom";
 
 const CategoryList = ({ img, titles, prefix }: TResponseCategories) => {

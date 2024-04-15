@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TError, TResponseProducts, TStatus } from "@customTypes";
+import { TError, TResponseProducts, TStatus } from "@types";
 import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors/index";
 import { actGetProductsById } from "./act/actGetProductsById";
 

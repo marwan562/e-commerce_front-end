@@ -1,5 +1,5 @@
 import { addToCart } from "@toolkit/Cart/CartSlice";
-import { TResponseProducts } from "@customTypes";
+import { TResponseProducts } from "@types";
 import { useAppDispatch } from "@toolkit/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import ButtonsQuantity from "./ButtonsQuantity";

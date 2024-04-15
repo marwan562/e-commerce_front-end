@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actGetProductsByCatPrefix from "./act/actGetProductsByCatPrefix";
-import { IProductsState } from "@toolkit/common/types";
+import { IProductsState } from "@types";
 
 const initialState: IProductsState = {
   status: "idle",

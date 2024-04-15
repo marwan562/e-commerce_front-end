@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { ICategoriesState } from "@toolkit/common/types";
+import type { ICategoriesState } from "@types";
 import actGetCategories from "./act/actGetCategories";
 
 const initialState: ICategoriesState = {

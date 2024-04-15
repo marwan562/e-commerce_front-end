@@ -30,7 +30,7 @@
       "@templates/*": ["src/templates/*"],
       "@toolkit/*": ["src/toolkit/*"],
       "@utils/*": ["src/utils/*"],
-      "@customTypes": ["src/types/*"]
+      "@types": ["src/types/index.ts"]
     },
 
     /* Linting */
