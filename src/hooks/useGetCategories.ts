@@ -1,4 +1,7 @@
-import { actGetCategories } from "@toolkit/categories/categoriesSlice";
+import {
+  actGetCategories,
+  cleanUpCategories,
+} from "@toolkit/categories/categoriesSlice";
 import { useAppSelector, useAppDispatch } from "@toolkit/hooks";
 import { useEffect } from "react";
 
@@ -9,10 +12,12 @@ const useGetCategories = () => {
   );
 
   useEffect(() => {
-    if (!records.length) {
-      dispatch(actGetCategories());
-    }
-  }, [dispatch, records.length]);
+    dispatch(actGetCategories());
+
+    return () => {
+      dispatch(cleanUpCategories());
+    };
+  }, [dispatch]);
 
   return { records, error, status };
 };

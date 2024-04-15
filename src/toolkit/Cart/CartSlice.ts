@@ -57,6 +57,9 @@ const CartSlice = createSlice({
     cartItemChangeQuantity: (state, action) => {
       state.items[action.payload.id] = action.payload.quantity;
     },
+    cleanProductsFullInfo: (state) => {
+      state.productsFullInfo = [];
+    },
   },
   extraReducers(builder) {
     builder.addCase(actGetProductsById.pending, (state) => {
@@ -84,6 +87,7 @@ export const {
   incrementQuantity,
   decrementQuantity,
   cartItemChangeQuantity,
+  cleanProductsFullInfo
 } = CartSlice.actions;
 
 export default CartSlice.reducer;

@@ -44,6 +44,7 @@ const wishlistSlice = createSlice({
         state.error = action.payload;
       }
     });
+
     // get wishlist items
     builder.addCase(actGetWishlist.pending, (state) => {
       state.status = "pending";
