@@ -3,13 +3,14 @@ import { TResponseProducts } from "@toolkit/common/types";
 import { useAppDispatch } from "@toolkit/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import ButtonsQuantity from "./ButtonsQuantity";
-import { memo } from "react";
+import { memo, useState } from "react";
 import WishListSvg from "@assets/Svg/WishListSvg";
 import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
 
 const ProductList = memo(
   ({ id, title, price, img, max, quantity, isLiked }: TResponseProducts) => {
     const dispatch = useAppDispatch();
+    const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
 
     const QuantityResidual = max - (quantity ?? 0);
 
@@ -20,11 +21,17 @@ const ProductList = memo(
     };
 
     const likeToggelHandler = () => {
-      dispatch(actLikeToggel(id));
-      if (!isLiked) {
-        toast.success(" You Added To Fav Products Successfully!");
-      } else {
-        toast.success(" You Remove Product Successfully!");
+      if (!wishlistLoading) {
+        setWishlistLoading(true);
+        dispatch(actLikeToggel(id))
+          .unwrap()
+          .then(() => setWishlistLoading(false))
+          .catch(() => setWishlistLoading(false));
+        if (!isLiked) {
+          toast.success(" You Added To Fav Products Successfully!");
+        } else {
+          toast.success(" You Remove Product Successfully!");
+        }
       }
     };
 
@@ -53,10 +60,15 @@ const ProductList = memo(
             {/* wishlist */}
             <div className=" ">
               <button
+                disabled={wishlistLoading}
                 onClick={likeToggelHandler}
-                className="absolute end-4 top-4  bg-gray-300  rounded-full  p-1.5 text-gray-900 transition hover:text-gray-900/75"
+                className="absolute end-4 top-4 btn  w-[50px]  bg-gray-300  rounded-full  p-1.5 text-gray-900 transition hover:text-gray-900/75"
               >
-                <WishListSvg isLiked={isLiked} />
+                {wishlistLoading ? (
+                  <span className="loading loading-spinner bg-red-600 text-primary"></span>
+                ) : (
+                  <WishListSvg isLiked={isLiked} />
+                )}
               </button>
             </div>
             <h3
