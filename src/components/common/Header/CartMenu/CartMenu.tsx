@@ -24,7 +24,7 @@ const CartMenu = ({ handleShowCart }: Props) => {
   const lengthCart = product.length;
 
   return (
-    <div className=" absolute mt-[550px]  max-h-fit  z-30 w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
+    <div className=" absolute mt-[550px]  max-h-fit  z-30 w-screen max-w-sm border border-gray-600 bg-gray-200 px-4 py-8 sm:px-6 lg:px-8">
       <button
         onClick={handleShowCart}
         className="absolute z-50 end-4 top-4 text-gray-600 transition hover:scale-110"
@@ -49,7 +49,7 @@ const CartMenu = ({ handleShowCart }: Props) => {
 
       <div className="mt-4 space-y-6">
         <ul className="space-y-4">
-          <Loanding status={status} error={error}>
+          <Loanding Type="cartMenu" status={status} error={error}>
             {product.length > 0 ? (
               product.map((el) => (
                 <CartItemList
