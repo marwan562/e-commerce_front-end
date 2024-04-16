@@ -1,4 +1,6 @@
 import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom";
+import Lottie from "lottie-react";
+import notFound from "@assets/LottieFiles/notFound.json";
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -15,14 +17,15 @@ const ErrorPage = () => {
   }
   return (
     <div className="flex h-screen flex-col bg-white">
-      <img
-        src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
-        alt=""
-        className="h-64 w-full object-cover"
-      />
+      <div className=" m-auto  w-[500px]">
+        <Lottie
+          animationData={notFound}
+            onComplete={() => console.log("test Fire")}
+        />
+      </div>
 
       <div className="flex flex-1 items-center justify-center">
-        <div className="mx-auto max-w-xl px-4 py-8 text-center">
+        <div className="mx-auto max-w-xl px-4 text-center">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {errorStatus}
             <br />

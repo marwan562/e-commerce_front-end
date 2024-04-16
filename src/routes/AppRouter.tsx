@@ -8,13 +8,13 @@ import LoadingPage from "@componenets/feedback/LoadingPage/LoadingPage";
 const MainLayout = lazy(() => import("@layouts/MainLayout/MainLayout"));
 
 //pages
+import ErrorPage from "@pages/ErrorPage";
 const Home = lazy(() => import("@pages/Home"));
 const Categories = lazy(() => import("@pages/Categories"));
 const Products = lazy(() => import("@pages/Products"));
 const AboutUs = lazy(() => import("@pages/AboutUs"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
-const ErrorPage = lazy(() => import("@pages/ErrorPage"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
 

@@ -17,10 +17,10 @@ type Props = {
   children: ReactNode;
   status: TStatus;
   error: TError;
-  Type: "product" | "category" | "cart" | "cartMenu";
+  Type: keyof typeof skeletonsTypes;
 };
 
-const Loanding = ({ children, status, error, Type }: Props) => {
+const Loanding = ({ children, status, error, Type = "category" }: Props) => {
   const Componenet = skeletonsTypes[Type];
   return (
     <div className="   ">
