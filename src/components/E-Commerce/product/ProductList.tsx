@@ -42,7 +42,6 @@ const ProductList = memo(
           {img ? (
             <div className=" h-64 w-full   ">
               <img
-                loading="lazy"
                 src={img}
                 alt={title}
                 className=" h-64 w-full object-cover z-10 transition duration-500 group-hover:scale-105 sm:h-72"

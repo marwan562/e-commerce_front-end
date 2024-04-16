@@ -1,22 +1,33 @@
 import { TError, TStatus } from "@types";
 import { ReactNode } from "react";
+import ProductSkeleton from "../Skeletons/ProductSkeleton/ProductSkeleton";
+import CartSkeletons from "../Skeletons/CartSkeletons/CartSkeletons";
+import CategoriesSkeletons from "../Skeletons/CategoriesSkeletons/CategoriesSkeletons";
 
 type Props = {
   children: ReactNode;
   status: TStatus;
   error: TError;
+  Type: "Products" | "Categories" | "Cart";
 };
 
-const Loanding = ({ children, status, error }: Props) => {
+const Loanding = ({ children, status, error, Type }: Props) => {
+  let Loading;
+
+  if  (Type === "Products")
+    return Loading == <ProductSkeleton />;
+  if (Type === "Cart") return Loading == <CartSkeletons />;
+  if (Type === "Categories") return Loading == <CategoriesSkeletons />;
+
   return (
     <div className="   ">
       {status === "pending" ? (
-        <progress className="progress container w-2/4  m-auto  pb-[40px]   flex items-center justify-center"></progress>
+        Loading
       ) : status === "failed" ? (
         <div role="alert" className="alert alert-error">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="stroke-current shrink-0 h-7 w-7"
+            className="stroke-current  shrink-0 h-7 w-7"
             fill="none"
             viewBox="0 0 24 24"
           >
