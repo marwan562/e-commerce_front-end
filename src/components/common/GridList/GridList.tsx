@@ -1,3 +1,4 @@
+import EmptyProducts from "@componenets/feedback/EmptyProducts/EmptyProducts";
 import { TResponseCategories, TStatus } from "@types";
 import { ReactNode } from "react";
 
@@ -23,7 +24,7 @@ const GridList = <T extends TResponseCategories>({
           ))}
         </div>
       ) : (
-        <p>No Products</p>
+        <EmptyProducts/>
       );
   }
   return recordsCategory;

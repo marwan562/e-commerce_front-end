@@ -6,7 +6,7 @@ import CartItemList from "@componenets/E-Commerce/CartItemList/CartItemList";
 import { cartItemChangeQuantity } from "@toolkit/Cart/CartSlice";
 import { useAppDispatch } from "@toolkit/hooks";
 import CartSupTotalPrice from "@componenets/E-Commerce/CartSubTotalPrice/CartSupTotalPrice";
-import CartEmpty from "@componenets/E-Commerce/CartItemList/CartEmpty";
+import EmptyProducts from "@componenets/feedback/EmptyProducts/EmptyProducts";
 
 type Props = {
   handleShowCart: () => void;
@@ -59,7 +59,7 @@ const CartMenu = ({ handleShowCart }: Props) => {
                 />
               ))
             ) : (
-              <CartEmpty />
+              <EmptyProducts />
             )}
           </Loanding>
         </ul>
