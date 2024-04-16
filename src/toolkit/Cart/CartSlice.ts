@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TError, TResponseProducts, TStatus } from "@types";
+import { isString, TError, TResponseProducts, TStatus } from "@types";
 import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors/index";
 import { actGetProductsById } from "./act/actGetProductsById";
 
@@ -72,7 +72,7 @@ const CartSlice = createSlice({
     });
     builder.addCase(actGetProductsById.rejected, (state, action) => {
       state.status = "failed";
-      if (action.payload && typeof action.payload === "string") {
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });

@@ -8,4 +8,4 @@ const isAxiosErrorHandler = (err: unknown) => {
   }
 };
 
-export default isAxiosErrorHandler
+export default isAxiosErrorHandler;

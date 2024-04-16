@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actLikeToggel from "./act/actLikeToggel";
 import actGetWishlist from "./act/actGetWishlist";
-import { TError, TResponseProducts, TStatus } from "@types";
+import { isString, TError, TResponseProducts, TStatus } from "@types";
 
 type TWishlistState = {
   status: TStatus;
@@ -55,8 +55,8 @@ const wishlistSlice = createSlice({
       state.productFullInfo = action.payload;
     });
     builder.addCase(actGetWishlist.rejected, (state, action) => {
-      state.status = "success";
-      if (action.payload && typeof action.payload === "string") {
+      state.status = "failed";
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });

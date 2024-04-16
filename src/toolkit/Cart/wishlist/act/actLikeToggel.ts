@@ -17,10 +17,10 @@ const actLikeToggel = createAsyncThunk(
         return { type: "remove", id };
       } else {
         await GlobalBaseURL.post("/wishlist", { userId: "1", productId: id });
-        return { type: "add", id};
+        return { type: "add", id };
       }
     } catch (err) {
-     return rejectWithValue(axiosErrorHandler(err))
+      return rejectWithValue(axiosErrorHandler(err));
     }
   }
 );
