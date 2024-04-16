@@ -8,7 +8,7 @@ const Category = () => {
   const { records, status, error } = useGetCategories();
 
   return (
-    <Loanding status={status} error={error}>
+    <Loanding Type="category" status={status} error={error}>
       <GridList<TResponseCategories>
         status={status}
         records={records}

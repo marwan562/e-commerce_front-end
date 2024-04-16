@@ -4,25 +4,25 @@ import ProductSkeleton from "../Skeletons/ProductSkeleton/ProductSkeleton";
 import CartSkeletons from "../Skeletons/CartSkeletons/CartSkeletons";
 import CategoriesSkeletons from "../Skeletons/CategoriesSkeletons/CategoriesSkeletons";
 
+const skeletonsTypes = {
+  product: ProductSkeleton,
+  category: CategoriesSkeletons,
+  cart: CartSkeletons,
+};
+
 type Props = {
   children: ReactNode;
   status: TStatus;
   error: TError;
-  Type: "Products" | "Categories" | "Cart";
+  Type: "product" | "category" | "cart";
 };
 
 const Loanding = ({ children, status, error, Type }: Props) => {
-  let Loading;
-
-  if  (Type === "Products")
-    return Loading == <ProductSkeleton />;
-  if (Type === "Cart") return Loading == <CartSkeletons />;
-  if (Type === "Categories") return Loading == <CategoriesSkeletons />;
-
+  const Componenet = skeletonsTypes[Type];
   return (
     <div className="   ">
       {status === "pending" ? (
-        Loading
+        <Componenet />
       ) : status === "failed" ? (
         <div role="alert" className="alert alert-error">
           <svg

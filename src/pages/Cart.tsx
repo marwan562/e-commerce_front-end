@@ -15,9 +15,9 @@ const Cart = () => {
     },
     [dispatch]
   );
-  
+
   return (
-    <Loanding status={status} error={error}>
+    <Loanding Type="cart" status={status} error={error}>
       <Cartitems
         product={product}
         changeQuantityHandler={changeQuantityHandler}
