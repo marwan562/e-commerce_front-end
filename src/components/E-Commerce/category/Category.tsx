@@ -10,6 +10,7 @@ const Category = () => {
   return (
     <Loanding Type="category" status={status} error={error}>
       <GridList<TResponseCategories>
+        emptyMessage="There are no categories available"
         status={status}
         records={records}
         renderItem={(record) => <CategoryList {...record} />}

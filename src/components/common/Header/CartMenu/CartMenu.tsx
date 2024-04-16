@@ -1,12 +1,11 @@
 import useGetProductsById from "@hooks/useGetProductsById";
-
 import { useNavigate } from "react-router-dom";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import CartItemList from "@componenets/E-Commerce/CartItemList/CartItemList";
 import { cartItemChangeQuantity } from "@toolkit/Cart/CartSlice";
 import { useAppDispatch } from "@toolkit/hooks";
 import CartSupTotalPrice from "@componenets/E-Commerce/CartSubTotalPrice/CartSupTotalPrice";
-import EmptyProducts from "@componenets/feedback/EmptyProducts/EmptyProducts";
+import LottieHandler from '../../../feedback/LottieHandler/LottieHandler'
 
 type Props = {
   handleShowCart: () => void;
@@ -59,7 +58,7 @@ const CartMenu = ({ handleShowCart }: Props) => {
                 />
               ))
             ) : (
-              <EmptyProducts />
+              <LottieHandler type='empty' />
             )}
           </Loanding>
         </ul>

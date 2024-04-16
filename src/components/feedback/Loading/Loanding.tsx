@@ -4,7 +4,7 @@ import ProductSkeleton from "../Skeletons/ProductSkeleton/ProductSkeleton";
 import CartSkeletons from "../Skeletons/CartSkeletons/CartSkeletons";
 import CategoriesSkeletons from "../Skeletons/CategoriesSkeletons/CategoriesSkeletons";
 import CartMenuSkeletons from "../Skeletons/CartMenu/CartMenuSkeletons";
-import FailedError from "../FailedError/FailedError";
+import LottieHandler from "../LottieHandler/LottieHandler";
 
 const skeletonsTypes = {
   product: ProductSkeleton,
@@ -27,7 +27,7 @@ const Loanding = ({ children, status, error, Type = "category" }: Props) => {
       {status === "pending" ? (
         <Componenet />
       ) : status === "failed" ? (
-        <FailedError error={error} />
+        <LottieHandler type="error" message={`Error: ${error}...!`} />
       ) : (
         children
       )}

@@ -9,6 +9,7 @@ const Product = () => {
   return (
     <Loanding Type="product" status={status} error={error}>
       <GridList<TResponseProducts>
+        emptyMessage="There are no products available"
         records={productsFullInfo}
         status={status}
         renderItem={(record) => <ProductList {...record} />}

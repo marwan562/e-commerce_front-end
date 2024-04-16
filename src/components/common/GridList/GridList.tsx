@@ -1,4 +1,4 @@
-import EmptyProducts from "@componenets/feedback/EmptyProducts/EmptyProducts";
+import LottieHandler from "@componenets/feedback/LottieHandler/LottieHandler";
 import { TResponseCategories, TStatus } from "@types";
 import { ReactNode } from "react";
 
@@ -6,12 +6,14 @@ type GridListProps<T> = {
   status: TStatus;
   records: T[];
   renderItem: (record: T) => ReactNode;
+  emptyMessage: string
 };
 
 const GridList = <T extends TResponseCategories>({
   renderItem,
   records,
   status,
+  emptyMessage
 }: GridListProps<T>) => {
   let recordsCategory;
   //Success
@@ -24,7 +26,7 @@ const GridList = <T extends TResponseCategories>({
           ))}
         </div>
       ) : (
-        <EmptyProducts/>
+        <LottieHandler message={emptyMessage} type='empty'/>
       );
   }
   return recordsCategory;

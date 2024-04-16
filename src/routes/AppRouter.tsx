@@ -1,14 +1,13 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-//loading page
-import LoadingPage from "@componenets/feedback/LoadingPage/LoadingPage";
+//loading
+import LottieHandler from "@componenets/feedback/LottieHandler/LottieHandler";
 
 //layouts
 const MainLayout = lazy(() => import("@layouts/MainLayout/MainLayout"));
 
 //pages
-import ErrorPage from "@pages/ErrorPage";
 const Home = lazy(() => import("@pages/Home"));
 const Categories = lazy(() => import("@pages/Categories"));
 const Products = lazy(() => import("@pages/Products"));
@@ -17,6 +16,7 @@ const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
+import ErrorPage from "@pages/ErrorPage";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -75,7 +75,11 @@ const AppRouter = () => {
   ]);
 
   return (
-    <Suspense fallback={<LoadingPage />}>
+    <Suspense
+      fallback={
+        <LottieHandler message="Loading please wait..." type="loading" />
+      }
+    >
       <RouterProvider router={router} />
     </Suspense>
   );
