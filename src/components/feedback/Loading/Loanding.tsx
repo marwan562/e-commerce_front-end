@@ -20,7 +20,7 @@ type Props = {
   Type: keyof typeof skeletonsTypes;
 };
 
-const Loanding = ({ children, status, error, Type = "category" }: Props) => {
+const Loanding = ({ children, status, error, Type  }: Props) => {
   const Componenet = skeletonsTypes[Type];
   return (
     <div className="   ">

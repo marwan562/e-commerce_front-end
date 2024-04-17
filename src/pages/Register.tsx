@@ -1,4 +1,5 @@
 import Logo from "@assets/Svg/LogoSvg";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -29,6 +30,7 @@ const Register = () => {
             </p>
 
             <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+              {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="FirstName"
@@ -39,12 +41,12 @@ const Register = () => {
 
                 <input
                   type="text"
-                  id="FirstName"
                   name="first_name"
                   className="mt-1 w-full p-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 />
               </div>
 
+              {/* Last Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="LastName"
@@ -61,6 +63,7 @@ const Register = () => {
                 />
               </div>
 
+              {/* Email */}
               <div className="col-span-6">
                 <label
                   htmlFor="Email"
@@ -78,6 +81,7 @@ const Register = () => {
                 />
               </div>
 
+              {/* Password */}
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Password"
@@ -95,6 +99,7 @@ const Register = () => {
                 />
               </div>
 
+              {/* Password Confirm */}
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="PasswordConfirmation"
@@ -111,30 +116,6 @@ const Register = () => {
                 />
               </div>
 
-              <div className="inline-flex items-center">
-                <h2 className=" text-sm text-gray-600">Privacy Register</h2>
-                <label
-                  className="relative flex items-center p-3 rounded-full cursor-pointer"
-                  htmlFor="teal"
-                >
-                  <input
-                    type="checkbox"
-                    className="before:content[''] bg-gray-200 peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-500 checked:bg-gray-500 checked:before:bg-gray-500 hover:before:opacity-10"
-                    id="teal"
-                  />
-                  <span className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3.5 w-3.5"
-                      viewBox="0 0 20 20"
-                      stroke="currentColor"
-                    >
-                      <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path>
-                    </svg>
-                  </span>
-                </label>
-              </div>
-
               <div className="col-span-6">
                 <p className="text-sm text-gray-500">
                   By creating an account, you agree to our
@@ -144,7 +125,7 @@ const Register = () => {
                   </a>
                   and
                   <a href="#" className="text-gray-700 underline">
-                    privacy policy
+                    {""} privacy policy
                   </a>
                   .
                 </p>
@@ -157,9 +138,9 @@ const Register = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?
-                  <a href="#" className="text-gray-700 underline">
+                  <Link to="/login" className="text-gray-700 underline">
                     Log in
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>

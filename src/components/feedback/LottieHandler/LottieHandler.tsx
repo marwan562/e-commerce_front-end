@@ -22,9 +22,7 @@ const LottieHandler = ({ type, message }: TProps) => {
     <div className="flex items-center justify-center h-screen">
       <div className=" w-[400px]">
         <Lottie animationData={lottie} className=" mb-[20px]" />
-        {message && (
-          <h2 className=" text-center text-3xl "> {message}</h2>
-        )}
+        {message && <h2 className=" text-center text-3xl "> {message}</h2>}
       </div>
     </div>
   );
