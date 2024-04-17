@@ -11,15 +11,13 @@ const signUpSchema = z
       .regex(/.*[!@#$%^&*()_+{}|[\]\\:";'<>?,./].*/, {
         message: "Password should be contain at least 1 special character",
       }),
-    password_confirmation: z
-      .string()
-      .min(1, { message: "Confirm Password is required" }),
+    password_confirmation: z.string(),
   })
   .refine((input) => input.password === input.password_confirmation, {
     message: "Confirm Password does not match Password",
     path: ["password_confirmation"],
   });
 
-export type TFormInputs = z.infer<typeof signUpSchema>;
+type TSignUpTypes = z.infer<typeof signUpSchema>;
 
-export { signUpSchema };
+export { signUpSchema, type TSignUpTypes };

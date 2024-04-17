@@ -2,19 +2,58 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "@assets/Svg/LogoSvg";
 import { Link } from "react-router-dom";
-import { signUpSchema, TFormInputs } from "src/validations/signUpSchema";
+import { signUpSchema, TSignUpTypes } from "src/validations/signUpSchema";
+import Input from "@componenets/Form/Input";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TFormInputs>({
+  } = useForm<TSignUpTypes>({
     mode: "onBlur",
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit: SubmitHandler<TFormInputs> = (data) => {
+  const signUpInputs = [
+    {
+      type: "text",
+      label: "First Name",
+      register: register("first_name"),
+      error: errors.first_name,
+      name: "first_name",
+    },
+    {
+      type: "text",
+      label: "Last Name",
+      register: register("last_name"),
+      error: errors.last_name,
+      name: "last_name",
+    },
+    {
+      type: "email",
+      label: "Email",
+      register: register("email"),
+      error: errors.email,
+      name: "email",
+    },
+    {
+      type: "password",
+      label: "Password",
+      register: register("password"),
+      error: errors.password,
+      name: "password",
+    },
+    {
+      type: "password",
+      label: "Confirm Password",
+      register: register("password_confirmation"),
+      error: errors.password_confirmation,
+      name: "password_confirmation",
+    },
+  ];
+
+  const onSubmit: SubmitHandler<TSignUpTypes> = (data) => {
     console.log(data);
   };
 
@@ -49,123 +88,11 @@ const Register = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="mt-8 grid grid-cols-6 gap-6"
             >
-              {/* First Name */}
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="FirstName"
-                  className={`block text-sm font-medium input-error text-gray-700 `}
-                >
-                  First Name
-                </label>
-
-                <input
-                  {...register("first_name")}
-                  type="text"
-                  name="first_name"
-                  className={`input input-bordered  w-full max-w-xs mt-1 ${
-                    errors.first_name && "input-error"
-                  }`}
-                />
-                {errors.first_name?.message && (
-                  <div className=" text-red-600 mt-1">
-                    {errors.first_name?.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Last Name */}
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Last Name
-                </label>
-
-                <input
-                  type="text"
-                  {...register("last_name")}
-                  className={`input input-bordered  w-full max-w-xs mt-1 ${
-                    errors.last_name && "input-error"
-                  }`}
-                />
-                {errors.last_name?.message && (
-                  <div className=" text-red-600 mt-1">
-                    {errors.last_name?.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Email */}
-              <div className="col-span-6">
-                <label
-                  htmlFor="Email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  {" "}
-                  Email{" "}
-                </label>
-
-                <input
-                  type="email"
-                  {...register("email")}
-                  className={`input input-bordered  w-full max-w-xs mt-1 ${
-                    errors.email && "input-error"
-                  }`}
-                />
-                {errors.email?.message && (
-                  <div className=" text-red-600 mt-1">
-                    {errors.email?.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Password */}
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  {" "}
-                  Password{" "}
-                </label>
-
-                <input
-                  type="password"
-                  {...register("password")}
-                  className={`input input-bordered  w-full max-w-xs mt-1 ${
-                    errors.password && "input-error"
-                  }`}
-                />
-                {errors.password?.message && (
-                  <div className=" text-red-600 mt-1">
-                    {errors.password?.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Password Confirm */}
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="PasswordConfirmation"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password Confirmation
-                </label>
-
-                <input
-                  type="password"
-                  {...register("password_confirmation")}
-                  className={`input input-bordered  w-full max-w-xs mt-1 ${
-                    errors.password_confirmation && "input-error"
-                  }`}
-                />
-                {errors.password_confirmation?.message && (
-                  <div className=" text-red-600 mt-1">
-                    {errors.password_confirmation?.message}
-                  </div>
-                )}
-              </div>
+              {signUpInputs.map((el, inx) => (
+                <div key={inx} className="col-span-6 sm:col-span-3">
+                  <Input {...el} />
+                </div>
+              ))}
 
               <div className="col-span-6">
                 <p className="text-sm text-gray-500">
