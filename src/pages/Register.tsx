@@ -1,7 +1,23 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "@assets/Svg/LogoSvg";
 import { Link } from "react-router-dom";
+import { signUpSchema, TFormInputs } from "src/validations/signUpSchema";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TFormInputs>({
+    mode: "onBlur",
+    resolver: zodResolver(signUpSchema),
+  });
+
+  const onSubmit: SubmitHandler<TFormInputs> = (data) => {
+    console.log(data);
+  };
+
   return (
     <section className="bg-white ">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -29,21 +45,32 @@ const Register = () => {
               nam dolorum aliquam, quibusdam aperiam voluptatum.
             </p>
 
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="mt-8 grid grid-cols-6 gap-6"
+            >
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="FirstName"
-                  className="block text-sm font-medium text-gray-700"
+                  className={`block text-sm font-medium input-error text-gray-700 `}
                 >
                   First Name
                 </label>
 
                 <input
+                  {...register("first_name")}
                   type="text"
                   name="first_name"
-                  className="mt-1 w-full p-1 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  className={`input input-bordered  w-full max-w-xs mt-1 ${
+                    errors.first_name && "input-error"
+                  }`}
                 />
+                {errors.first_name?.message && (
+                  <div className=" text-red-600 mt-1">
+                    {errors.first_name?.message}
+                  </div>
+                )}
               </div>
 
               {/* Last Name */}
@@ -57,10 +84,16 @@ const Register = () => {
 
                 <input
                   type="text"
-                  id="LastName"
-                  name="last_name"
-                  className="mt-1 w-full p-1  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  {...register("last_name")}
+                  className={`input input-bordered  w-full max-w-xs mt-1 ${
+                    errors.last_name && "input-error"
+                  }`}
                 />
+                {errors.last_name?.message && (
+                  <div className=" text-red-600 mt-1">
+                    {errors.last_name?.message}
+                  </div>
+                )}
               </div>
 
               {/* Email */}
@@ -75,10 +108,16 @@ const Register = () => {
 
                 <input
                   type="email"
-                  id="Email"
-                  name="email"
-                  className="mt-1 w-full p-1  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  {...register("email")}
+                  className={`input input-bordered  w-full max-w-xs mt-1 ${
+                    errors.email && "input-error"
+                  }`}
                 />
+                {errors.email?.message && (
+                  <div className=" text-red-600 mt-1">
+                    {errors.email?.message}
+                  </div>
+                )}
               </div>
 
               {/* Password */}
@@ -93,10 +132,16 @@ const Register = () => {
 
                 <input
                   type="password"
-                  id="Password"
-                  name="password"
-                  className="mt-1 w-full p-1  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  {...register("password")}
+                  className={`input input-bordered  w-full max-w-xs mt-1 ${
+                    errors.password && "input-error"
+                  }`}
                 />
+                {errors.password?.message && (
+                  <div className=" text-red-600 mt-1">
+                    {errors.password?.message}
+                  </div>
+                )}
               </div>
 
               {/* Password Confirm */}
@@ -110,10 +155,16 @@ const Register = () => {
 
                 <input
                   type="password"
-                  id="PasswordConfirmation"
-                  name="password_confirmation"
-                  className="mt-1 w-full p-1  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  {...register("password_confirmation")}
+                  className={`input input-bordered  w-full max-w-xs mt-1 ${
+                    errors.password_confirmation && "input-error"
+                  }`}
                 />
+                {errors.password_confirmation?.message && (
+                  <div className=" text-red-600 mt-1">
+                    {errors.password_confirmation?.message}
+                  </div>
+                )}
               </div>
 
               <div className="col-span-6">
@@ -132,7 +183,10 @@ const Register = () => {
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-gray-600 bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500">
+                <button
+                  type="submit"
+                  className="inline-block shrink-0 rounded-md border border-gray-600 bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500"
+                >
                   Create an account
                 </button>
 
