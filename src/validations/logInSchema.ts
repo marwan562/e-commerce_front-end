@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 const logInSchema = z.object({
-  first_name: z.string().min(1, { message: "First name is required" }),
-  passwoed: z
+  email: z.string().min(1, { message: "Email is required" }).email(),
+  password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters" })
     .regex(/.*[!@#$%^&*()_+{}|[\]\\:";'<>?,./].*/, {

@@ -14,24 +14,6 @@ const Login = () => {
     resolver: zodResolver(logInSchema),
   });
 
-  const logInInputs = [
-    {
-      type: "text",
-      label: "First Name",
-      register: register("first_name"),
-      error: errors.first_name,
-      name: "first_name",
-    },
-
-    {
-      type: "password",
-      label: "Password",
-      register: register("passwoed"),
-      error: errors.passwoed,
-      name: "password",
-    },
-  ];
-
   const onSubmit: SubmitHandler<TLogInTypes> = (data) => {
     console.log(data);
   };
@@ -51,11 +33,24 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="mx-auto mb-0 mt-8 max-w-md space-y-4"
       >
-        {logInInputs.map((el, inx) => (
-          <div key={inx}>
-            <Input {...el} />
-          </div>
-        ))}
+        <div className="col-span-6 sm:col-span-3">
+          <Input
+            name="email"
+            type="text"
+            label="First Name"
+            register={register}
+            error={errors.email}
+          />
+        </div>
+        <div className="col-span-6 sm:col-span-3">
+          <Input
+            name="password"
+            type="password"
+            label="Password"
+            register={register}
+            error={errors.password}
+          />
+        </div>
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">
             No account?

@@ -4,54 +4,30 @@ import Logo from "@assets/Svg/LogoSvg";
 import { Link } from "react-router-dom";
 import { signUpSchema, TSignUpTypes } from "src/validations/signUpSchema";
 import Input from "@componenets/Form/Input";
+import React from "react";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+    getFieldState,
+    trigger,
     formState: { errors },
   } = useForm<TSignUpTypes>({
     mode: "onBlur",
     resolver: zodResolver(signUpSchema),
   });
 
-  const signUpInputs = [
-    {
-      type: "text",
-      label: "First Name",
-      register: register("first_name"),
-      error: errors.first_name,
-      name: "first_name",
-    },
-    {
-      type: "text",
-      label: "Last Name",
-      register: register("last_name"),
-      error: errors.last_name,
-      name: "last_name",
-    },
-    {
-      type: "email",
-      label: "Email",
-      register: register("email"),
-      error: errors.email,
-      name: "email",
-    },
-    {
-      type: "password",
-      label: "Password",
-      register: register("password"),
-      error: errors.password,
-      name: "password",
-    },
-    {
-      type: "password",
-      label: "Confirm Password",
-      register: register("password_confirmation"),
-      error: errors.password_confirmation,
-      name: "password_confirmation",
-    },
-  ];
+  const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
+    await trigger("email");
+    const email = e.target.value;
+    const { isDirty, invalid } = getFieldState("email");
+    console.log(isDirty, invalid);
+
+    if (isDirty && !invalid) {
+      //check email
+    }
+  };
 
   const onSubmit: SubmitHandler<TSignUpTypes> = (data) => {
     console.log(data);
@@ -88,11 +64,61 @@ const Register = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="mt-8 grid grid-cols-6 gap-6"
             >
-              {signUpInputs.map((el, inx) => (
-                <div key={inx} className="col-span-6 sm:col-span-3">
-                  <Input {...el} />
-                </div>
-              ))}
+              {/* First Name */}
+              <div className="col-span-6 sm:col-span-3">
+                <Input
+                  name="first_name"
+                  type="text"
+                  label="First Name"
+                  register={register}
+                  error={errors.first_name}
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="col-span-6 sm:col-span-3">
+                <Input
+                  name="last_name"
+                  type="text"
+                  label="Last Name"
+                  register={register}
+                  error={errors.last_name}
+                />
+              </div>
+
+              {/* Email  */}
+              <div className="col-span-6 sm:col-span-3">
+                <Input
+                  name="email"
+                  type="email"
+                  label="Email"
+                  register={register}
+                  error={errors.email}
+                  onBlur={emailOnBlurHandler}
+                />
+              </div>
+
+              {/* Password  */}
+              <div className="col-span-6 sm:col-span-3">
+                <Input
+                  name="password"
+                  type="password"
+                  label="Password"
+                  register={register}
+                  error={errors.password}
+                />
+              </div>
+
+              {/*  Confirm Pass */}
+              <div className="col-span-6 sm:col-span-3">
+                <Input
+                  name="password_confirmation"
+                  type="password"
+                  label="Confirm Password"
+                  register={register}
+                  error={errors.password_confirmation}
+                />
+              </div>
 
               <div className="col-span-6">
                 <p className="text-sm text-gray-500">
