@@ -12,6 +12,7 @@ const Register = () => {
     handleSubmit,
     getFieldState,
     trigger,
+    reset,
     formState: { errors },
   } = useForm<TSignUpTypes>({
     mode: "onBlur",
@@ -22,14 +23,13 @@ const Register = () => {
     await trigger("email");
     const email = e.target.value;
     const { isDirty, invalid } = getFieldState("email");
-    console.log(isDirty, invalid);
-
     if (isDirty && !invalid) {
-      //check email
+      //Check Email;
     }
   };
 
   const onSubmit: SubmitHandler<TSignUpTypes> = (data) => {
+    reset();
     console.log(data);
   };
 
