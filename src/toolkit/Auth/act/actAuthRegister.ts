@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { axiosErrorHandler } from "@utils/index";
-import { IFormData } from "src/types/common";
+import { IFormData, IResUser } from "src/types/common";
 
 const actAuthRegister = createAsyncThunk(
   "auth/actAuthRegister",
@@ -9,7 +9,9 @@ const actAuthRegister = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const res = await GlobalBaseURL.post(`/register`, formData);
+      const res = await GlobalBaseURL.post<IResUser>(`/register`, formData);
+      console.log(res.data);
+
       return res.data;
     } catch (err) {
       return rejectWithValue(axiosErrorHandler(err));

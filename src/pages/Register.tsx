@@ -4,14 +4,14 @@ import Logo from "@assets/Svg/LogoSvg";
 import { Link, useNavigate } from "react-router-dom";
 import { signUpSchema, TSignUpTypes } from "src/validations/signUpSchema";
 import Input from "@componenets/Form/Input";
-import React from "react";
+import React, { useEffect } from "react";
 import useCheckEmailAvailability from "@hooks/useCheckEmailAvailability";
 import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
-import { actAuthRegister } from "@toolkit/Auth/authSlice";
+import { actAuthRegister, resetUI } from "@toolkit/Auth/authSlice";
 import Alert from "@componenets/feedback/Alert/Alert";
 
 const Register = () => {
-  const dispacth = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { status, error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const {
@@ -50,13 +50,19 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<TSignUpTypes> = (data) => {
     const { first_name, last_name, email, password } = data;
-    dispacth(actAuthRegister({ first_name, last_name, email, password }))
+    dispatch(actAuthRegister({ first_name, last_name, email, password }))
       .unwrap()
       .then(() => {
         reset();
         navigate("/login?message=acount_created", { replace: true });
       });
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetUI());
+    };
+  }, [dispatch]);
 
   return (
     <>
@@ -184,7 +190,9 @@ const Register = () => {
                     disabled={
                       emailAvailabilityStatus === "notAvailable"
                         ? true
-                        : false || status === "pending"
+                        : false || status === "pending" || error
+                        ? true
+                        : false
                     }
                     type="submit"
                     className="inline-block shrink-0 rounded-md border border-gray-600 bg-gray-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500"

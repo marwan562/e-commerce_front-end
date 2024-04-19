@@ -1,7 +1,9 @@
 import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { useState } from "react";
-import { IUsers } from "src/types/common";
 
+type TEmail = {
+  email: string;
+};
 type TStatus = "idle" | "checking" | "available" | "notAvailable" | "failed";
 
 const useCheckEmailAvailability = () => {
@@ -14,7 +16,7 @@ const useCheckEmailAvailability = () => {
     setEnteredEmail(email);
     setEmailAvailabilityStatus("checking");
     try {
-      const res = await GlobalBaseURL.get<IUsers[]>(`users?email=${email}`);
+      const res = await GlobalBaseURL.get<TEmail[]>(`users?email=${email}`);
 
       if (!res.data?.length) {
         setEmailAvailabilityStatus("available");

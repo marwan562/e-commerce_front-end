@@ -6,14 +6,14 @@ type GridListProps<T> = {
   status: TStatus;
   records: T[];
   renderItem: (record: T) => ReactNode;
-  emptyMessage: string
+  emptyMessage?: string;
 };
 
 const GridList = <T extends TResponseCategories>({
   renderItem,
   records,
   status,
-  emptyMessage
+  emptyMessage,
 }: GridListProps<T>) => {
   let recordsCategory;
   //Success
@@ -26,7 +26,7 @@ const GridList = <T extends TResponseCategories>({
           ))}
         </div>
       ) : (
-        <LottieHandler message={emptyMessage} type='empty'/>
+        <LottieHandler message={emptyMessage} type="empty" />
       );
   }
   return recordsCategory;

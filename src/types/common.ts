@@ -32,8 +32,14 @@ export interface IProductsState {
   error: TError;
 }
 
-export interface IUsers {
-  email: string;
+export interface IResUser {
+  accessToken: string 
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+  } 
 }
 
 export interface IFormData {
