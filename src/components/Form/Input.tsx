@@ -1,18 +1,16 @@
 import React from "react";
-import {
-  FieldError,
-  FieldValues,
-  Path,
-  UseFormRegister,
-} from "react-hook-form";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 interface TInputProps<T extends FieldValues> {
   type: string;
   label: string;
   register: UseFormRegister<T>;
-  error?: FieldError;
+  error?: string;
   name: Path<T>;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  emailCheckText?: string;
+  successEmail?: string;
+  disabled?: boolean;
 }
 
 const Input = <T extends FieldValues>({
@@ -22,6 +20,8 @@ const Input = <T extends FieldValues>({
   name,
   error,
   onBlur,
+  emailCheckText,
+  successEmail,
 }: TInputProps<T>) => {
   const onblurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
     if (onBlur) {
@@ -47,12 +47,12 @@ const Input = <T extends FieldValues>({
         id={name}
         type={type}
         className={`input input-bordered  w-full max-w-xs mt-1 ${
-          error?.message && "input-error"
-        }`}
+          error && "input-error"
+        } ${successEmail ? " input-success" : ""}`}
       />
-      {error?.message && (
-        <div className=" text-red-600 mt-1">{error?.message}</div>
-      )}
+      <div className=" text-green-500"> {successEmail}</div>
+      {emailCheckText}
+      {error && <div className=" text-red-600 mt-1">{error}</div>}
     </>
   );
 };

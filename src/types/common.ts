@@ -4,7 +4,7 @@ export type TError = null | string;
 
 export type TResponseCategories = {
   id?: number;
-  titles?: string;
+  title?: string;
   prefix?: string;
   img?: string;
 };
@@ -16,18 +16,29 @@ export interface ICategoriesState {
 }
 
 export type TResponseProducts = {
-  id: number ;
+  id: number;
   title: string;
   price: number;
   cat_prefix: string;
   img: string;
   quantity?: number;
   max: number;
-  isLiked:boolean
+  isLiked: boolean;
 };
 
 export interface IProductsState {
   status: TStatus;
   records: TResponseProducts[];
   error: TError;
+}
+
+export interface IUsers {
+  email: string;
+}
+
+export interface IFormData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
 }

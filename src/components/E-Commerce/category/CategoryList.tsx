@@ -1,7 +1,7 @@
 import { TResponseCategories } from "@types";
 import { Link } from "react-router-dom";
 
-const CategoryList = ({ img, titles, prefix }: TResponseCategories) => {
+const CategoryList = ({ img, title, prefix }: TResponseCategories) => {
   return (
     <>
       <Link
@@ -11,18 +11,15 @@ const CategoryList = ({ img, titles, prefix }: TResponseCategories) => {
         <div className="relative h-[350px] sm:h-[450px]">
           <img
             src={img}
-            alt={titles}
+            alt={title}
             className=" rounded-md  h-full w-full object-cover"
           />
         </div>
 
         <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-          <h3 className="text-xl font-medium text-white">Skinny Jeans Blue</h3>
-
-          <p className="mt-1.5 text-pretty text-xs text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            sequi dicta impedit aperiam ipsum!
-          </p>
+          <h3 className="text-xl font-medium text-white">
+            {title?.toUpperCase()}
+          </h3>
 
           <span className="mt-3 inline-block bg-gray-700 hover:bg-gray-500 rounded-sm  px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
             Shop Now
