@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "@assets/Svg/LogoSvg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { signUpSchema, TSignUpTypes } from "src/validations/signUpSchema";
 import Input from "@componenets/Form/Input";
 import React, { useEffect } from "react";
@@ -12,7 +12,7 @@ import Alert from "@componenets/feedback/Alert/Alert";
 
 const Register = () => {
   const dispatch = useAppDispatch();
-  const { status, error } = useAppSelector((state) => state.auth);
+  const { status, error, accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const {
     register,
@@ -63,6 +63,10 @@ const Register = () => {
       dispatch(resetUI());
     };
   }, [dispatch]);
+
+  if (accessToken) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>

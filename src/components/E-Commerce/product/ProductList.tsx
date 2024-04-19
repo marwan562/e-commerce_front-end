@@ -1,36 +1,46 @@
 import { addToCart } from "@toolkit/Cart/CartSlice";
 import { TResponseProducts } from "@types";
-import { useAppDispatch } from "@toolkit/hooks";
+import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import ButtonsQuantity from "./ButtonsQuantity";
 import { memo, useState } from "react";
 import WishListSvg from "@assets/Svg/WishListSvg";
 import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
+import { Navigate } from "react-router-dom";
 
 const ProductList = memo(
   ({ id, title, price, img, max, quantity, isLiked }: TResponseProducts) => {
+    const { accessToken } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
 
     const QuantityResidual = max - (quantity ?? 0);
 
     const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
-      e.preventDefault();
-      dispatch(addToCart(id));
-      toast.success(" You Added To Cart Successfully!");
+      if (!accessToken) {
+        <Navigate to="/login?message=login_required" />;
+      } else {
+        e.preventDefault();
+        dispatch(addToCart(id));
+        toast.success(" You Added To Cart Successfully!");
+      }
     };
 
     const likeToggelHandler = () => {
-      if (!wishlistLoading) {
-        setWishlistLoading(true);
-        dispatch(actLikeToggel(id))
-          .unwrap()
-          .then(() => setWishlistLoading(false))
-          .catch(() => setWishlistLoading(false));
-        if (!isLiked) {
-          toast.success(" You Added To Fav Products Successfully!");
-        } else {
-          toast.success(" You Remove Product Successfully!");
+      if (!accessToken) {
+        toast.error("Login please..!");
+      } else {
+        if (!wishlistLoading) {
+          setWishlistLoading(true);
+          dispatch(actLikeToggel(id))
+            .unwrap()
+            .then(() => setWishlistLoading(false))
+            .catch(() => setWishlistLoading(false));
+          if (!isLiked) {
+            toast.success(" You Added To Fav Products Successfully!");
+          } else {
+            toast.success(" You Remove Product Successfully!");
+          }
         }
       }
     };

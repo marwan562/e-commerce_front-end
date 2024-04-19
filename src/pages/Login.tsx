@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { logInSchema, TLogInTypes } from "src/validations/logInSchema";
 import Input from "@componenets/Form/Input";
 import Alert from "@componenets/feedback/Alert/Alert";
@@ -13,10 +13,15 @@ const Login = () => {
   const [searchParam, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { status, error } = useAppSelector((state) => state.auth);
+  const { status, error, accessToken } = useAppSelector((state) => state.auth);
 
-  const searchParamsGetMessage =
-    searchParam.get("message") === "acount_created";
+  const MessageLog = searchParam.get("message") === "acount_created";
+
+  const MessageLog_Req = searchParam.get("message") === "login_required";
+
+  if (MessageLog_Req) {
+    toast.error("Login Please To see, Future.");
+  }
 
   const {
     register,
@@ -28,7 +33,7 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<TLogInTypes> = (data) => {
-    if (searchParamsGetMessage) {
+    if (MessageLog) {
       setSearchParams("");
     }
     dispatch(actAuthLogin(data))
@@ -46,9 +51,13 @@ const Login = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(resetUI())
-    }
-  },[dispatch])
+      dispatch(resetUI());
+    };
+  }, [dispatch]);
+
+  if (accessToken) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>
@@ -57,7 +66,7 @@ const Login = () => {
         <Toaster reverseOrder={false} />
         {/* Alert New Acc */}
         <div className=" mb-[20px]">
-          {searchParamsGetMessage && (
+          {MessageLog && (
             <Alert
               type="info"
               message="Your acount created successfully, Please login..!"

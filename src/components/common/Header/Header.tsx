@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/smScreenMenu/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/smScreenMenu/ButtonMenu";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 import CartMenu from "./CartMenu/CartMenu";
 import HeaderCounter from "./HeaderCounter/HeaderCounter";
@@ -77,20 +77,24 @@ const Header = () => {
 
           <div className="flex items-center gap-4 ">
             {/* Wish List */}
-            <HeaderCounter
-              title="wishlist"
-              totalQuantityitems={WishlistQuantityItems}
-              SvgIcon={<FaRegHeart />}
-            />
-            {/* Space Line */}
-            <div className=" text-3xl mb-[6px]">|</div>
-            {/* Cart Menu */}
-            <HeaderCounter
-              title="cart"
-              handleShowCart={handleShowCart}
-              totalQuantityitems={CartQuantityItems}
-              SvgIcon={<Cart />}
-            />
+            {accessToken && (
+              <>
+                <HeaderCounter
+                  title="wishlist"
+                  totalQuantityitems={WishlistQuantityItems}
+                  SvgIcon={<FaRegHeart />}
+                />
+                {/* Space Line */}
+                <div className=" text-3xl mb-[6px]">|</div>
+                {/* Cart Menu */}
+                <HeaderCounter
+                  title="cart"
+                  handleShowCart={handleShowCart}
+                  totalQuantityitems={CartQuantityItems}
+                  SvgIcon={<Cart />}
+                />
+              </>
+            )}
             {!showCart && <CartMenu handleShowCart={handleShowCart} />}
             {/* Login */}
             {!accessToken ? (
@@ -120,7 +124,7 @@ const Header = () => {
                   className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <a>Profile</a>
+                    <Link to={"/user/profile"}>Profile</Link>
                   </li>
                   <li>
                     <a>Orders</a>

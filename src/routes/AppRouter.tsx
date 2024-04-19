@@ -9,6 +9,7 @@ const MainLayout = lazy(() => import("@layouts/MainLayout/MainLayout"));
 
 //pages
 const Home = lazy(() => import("@pages/Home"));
+const Profile = lazy(() => import("@pages/Profile"));
 const Categories = lazy(() => import("@pages/Categories"));
 const Products = lazy(() => import("@pages/Products"));
 const AboutUs = lazy(() => import("@pages/AboutUs"));
@@ -17,6 +18,9 @@ const Register = lazy(() => import("@pages/Register"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
 import ErrorPage from "@pages/ErrorPage";
+
+//auth protected route
+import ProtectedRoute from "@componenets/Auth/ProtectedRoute";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -52,11 +56,19 @@ const AppRouter = () => {
         },
         {
           path: "/cart",
-          element: <Cart />,
+          element: (
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/wishlist",
-          element: <Wishlist />,
+          element: (
+            <ProtectedRoute>
+              <Wishlist />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/about-us",
@@ -69,6 +81,14 @@ const AppRouter = () => {
         {
           path: "register",
           element: <Register />,
+        },
+        {
+          path: "/user/profile",
+          element: (
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          ),
         },
       ],
     },
