@@ -6,19 +6,20 @@ import ButtonsQuantity from "./ButtonsQuantity";
 import { memo, useState } from "react";
 import WishListSvg from "@assets/Svg/WishListSvg";
 import { actLikeToggel } from "@toolkit/Cart/wishlist/wishlistSlice";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = memo(
   ({ id, title, price, img, max, quantity, isLiked }: TResponseProducts) => {
-    const { accessToken } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { accessToken } = useAppSelector((state) => state.auth);
     const [wishlistLoading, setWishlistLoading] = useState<boolean>(false);
 
     const QuantityResidual = max - (quantity ?? 0);
 
     const addToCartHandler = (e: React.MouseEvent<HTMLElement>) => {
       if (!accessToken) {
-        <Navigate to="/login?message=login_required" />;
+        navigate("/login?message=login_required");
       } else {
         e.preventDefault();
         dispatch(addToCart(id));

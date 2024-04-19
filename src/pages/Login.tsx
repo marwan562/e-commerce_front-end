@@ -19,10 +19,6 @@ const Login = () => {
 
   const MessageLog_Req = searchParam.get("message") === "login_required";
 
-  if (MessageLog_Req) {
-    toast.error("Login Please To see, Future.");
-  }
-
   const {
     register,
     handleSubmit,
@@ -65,6 +61,16 @@ const Login = () => {
         {/* Tost notification */}
         <Toaster reverseOrder={false} />
         {/* Alert New Acc */}
+        <div className=" mb-[20px]">
+          {MessageLog_Req && (
+            <Alert
+              type="info"
+              message=" you can't access this page, Please login..! "
+            />
+          )}
+        </div>
+
+        {/* -------------- */}
         <div className=" mb-[20px]">
           {MessageLog && (
             <Alert

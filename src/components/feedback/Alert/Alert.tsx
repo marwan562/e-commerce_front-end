@@ -13,7 +13,7 @@ type TProps = {
 const Alert = ({ type, error, message }: TProps) => {
   const renderAlert = AlertTypes[type];
   return (
-    <div role="alert" className={`alert  mt-4 ${renderAlert}`}>
+    <div role="alert" className={`alert mb-[20px]  mt-4 ${renderAlert}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

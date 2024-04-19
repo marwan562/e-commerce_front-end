@@ -10,7 +10,6 @@ const actAuthRegister = createAsyncThunk(
 
     try {
       const res = await GlobalBaseURL.post<IResUser>(`/register`, formData);
-      console.log(res.data);
 
       return res.data;
     } catch (err) {

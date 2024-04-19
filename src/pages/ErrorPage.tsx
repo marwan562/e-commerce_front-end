@@ -8,7 +8,6 @@ const ErrorPage = () => {
       <div className=" m-auto  w-[500px]">
         <Lottie
           animationData={notFound}
-          onComplete={() => console.log("test Fire")}
         />
       </div>
 
