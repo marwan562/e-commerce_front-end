@@ -2,27 +2,33 @@ import { useState } from "react";
 import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/smScreenMenu/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/smScreenMenu/ButtonMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
 import CartMenu from "./CartMenu/CartMenu";
 import HeaderCounter from "./HeaderCounter/HeaderCounter";
 import { getCartTotalQuantitySelector } from "@toolkit/Cart/selectors";
-import { useAppSelector } from "@toolkit/hooks";
+import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
 import Cart from "@assets/Svg/CartSvg";
 import { FaRegHeart } from "react-icons/fa";
-
-
-
-
+import { authLogout } from "@toolkit/Auth/authSlice";
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const { user, accessToken } = useAppSelector((state) => state.auth);
+
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [showCart, setShowCart] = useState<boolean>(true);
 
+  const navigate = useNavigate();
   const CartQuantityItems = useAppSelector(getCartTotalQuantitySelector);
   const WishlistQuantityItems = useAppSelector(
     (state) => state.wishlist.itemsId.length
   );
+
+  const authLogoutHandler = () => {
+    dispatch(authLogout());
+    navigate("login", { replace: true });
+  };
 
   const handleShowCart = () => {
     setShowCart(!showCart);
@@ -87,17 +93,45 @@ const Header = () => {
             />
             {!showCart && <CartMenu handleShowCart={handleShowCart} />}
             {/* Login */}
-            <div className="sm:flex sm:gap-4">
-              <NavLink to={"/login"} className={handleActiveLogin}>
-                Login
-              </NavLink>
-              {/* register */}
-              <div className="hidden sm:flex">
-                <NavLink to={"/register"} className={handleActiveRegister}>
-                  Register
+            {!accessToken ? (
+              <div className="sm:flex sm:gap-4">
+                <NavLink to={"/login"} className={handleActiveLogin}>
+                  Login
                 </NavLink>
+                {/* register */}
+                <div className="hidden sm:flex">
+                  <NavLink to={"/register"} className={handleActiveRegister}>
+                    Register
+                  </NavLink>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="dropdown dropdown-hover">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn m-1 font-semibold"
+                >
+                  <span className="  text-[19px] font-medium "> Welcome:</span>{" "}
+                  {user?.first_name} {user?.last_name}
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a>Profile</a>
+                  </li>
+                  <li>
+                    <a>Orders</a>
+                  </li>
+                  <hr />
+                  <li onClick={authLogoutHandler}>
+                    <a>Logout</a>
+                  </li>
+                </ul>
+              </div>
+            )}
 
             <div className="block md:hidden ">
               {/* Menu Button */}

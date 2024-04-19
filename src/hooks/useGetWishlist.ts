@@ -9,6 +9,7 @@ const useGetWishlist = () => {
   const { productFullInfo, status, error } = useAppSelector(
     (state) => state.wishlist
   );
+  
   const { items } = useAppSelector((state) => state.cart);
   const wishlistItemId = useAppSelector((state) => state.wishlist.itemsId);
   const dispatch = useAppDispatch();

@@ -40,7 +40,7 @@ const wishlistSlice = createSlice({
       }
     });
     builder.addCase(actLikeToggel.rejected, (state, action) => {
-      if (action.payload && typeof action.payload === "string") {
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });
