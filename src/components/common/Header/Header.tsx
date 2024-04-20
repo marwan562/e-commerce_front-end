@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/smScreenMenu/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/smScreenMenu/ButtonMenu";
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
 import Cart from "@assets/Svg/CartSvg";
 import { FaRegHeart } from "react-icons/fa";
 import { authLogout } from "@toolkit/Auth/authSlice";
+import { actGetWishlist } from "@toolkit/Cart/wishlist/wishlistSlice";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,12 @@ const Header = () => {
   const handleShowCart = () => {
     setShowCart(!showCart);
   };
+
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(actGetWishlist("productId"));
+    }
+  }, [dispatch, accessToken]);
   return (
     <header className="bg-white drop-shadow-xl ">
       <div className=" mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">

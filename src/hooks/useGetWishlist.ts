@@ -21,7 +21,7 @@ const useGetWishlist = () => {
   }));
 
   useEffect(() => {
-    const Promise = dispatch(actGetWishlist());
+    const Promise = dispatch(actGetWishlist('productsFullInfo'));
 
     return () => {
       Promise.abort();

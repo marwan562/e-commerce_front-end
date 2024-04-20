@@ -1,56 +1,24 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import { logInSchema, TLogInTypes } from "src/validations/logInSchema";
+import { Link, Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Input from "@componenets/Form/Input";
 import Alert from "@componenets/feedback/Alert/Alert";
-import { useAppDispatch, useAppSelector } from "@toolkit/hooks";
-import { actAuthLogin, resetUI } from "@toolkit/Auth/authSlice";
-import toast, { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+import useLogin from "@hooks/useLogin";
 
 const Login = () => {
-  const [searchParam, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { status, error, accessToken } = useAppSelector((state) => state.auth);
-
-  const MessageLog = searchParam.get("message") === "acount_created";
-
-  const MessageLog_Req = searchParam.get("message") === "login_required";
-
+  // hook login
   const {
-    register,
+    status,
+    accessToken,
+    MessageLog,
+    MessageLog_Req,
     handleSubmit,
-    formState: { errors },
-  } = useForm<TLogInTypes>({
-    mode: "onBlur",
-    resolver: zodResolver(logInSchema),
-  });
+    onSubmit,
+    register,
+    errors,
+    error,
+  } = useLogin();
 
-  const onSubmit: SubmitHandler<TLogInTypes> = (data) => {
-    if (MessageLog) {
-      setSearchParams("");
-    }
-    dispatch(actAuthLogin(data))
-      .unwrap()
-      .then(() => {
-        // toast.success("Logged in successfully");
-        navigate("/", { replace: true });
-      })
-      .catch(() => {
-        if (error) {
-          toast.error(error);
-        }
-      });
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetUI());
-    };
-  }, [dispatch]);
-
+  // Protected route
   if (accessToken) {
     return <Navigate to={"/"} />;
   }

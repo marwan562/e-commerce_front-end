@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import actLikeToggel from "./act/actLikeToggel";
 import actGetWishlist from "./act/actGetWishlist";
 import { isString, TError, TResponseProducts, TStatus } from "@types";
+import { authLogout } from "@toolkit/Auth/authSlice";
 
 type TWishlistState = {
   status: TStatus;
@@ -52,13 +53,23 @@ const wishlistSlice = createSlice({
     });
     builder.addCase(actGetWishlist.fulfilled, (state, action) => {
       state.status = "success";
-      state.productFullInfo = action.payload;
+      if (action.payload.dataType === "productsFullInfo") {
+        state.productFullInfo = action.payload.data;
+      } else {
+        state.itemsId = action.payload.data;
+      }
     });
     builder.addCase(actGetWishlist.rejected, (state, action) => {
       state.status = "failed";
       if (isString(action.payload)) {
         state.error = action.payload;
       }
+    });
+
+    // When logout reset
+    builder.addCase(authLogout, (state) => {
+      state.itemsId = [];
+      state.productFullInfo = [];
     });
   },
 });

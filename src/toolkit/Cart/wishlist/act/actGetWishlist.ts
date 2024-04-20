@@ -3,11 +3,11 @@ import { GlobalBaseURL } from "@services/API/globalAxsios";
 import { RootState } from "@toolkit/index";
 import { axiosErrorHandler } from "@utils/index";
 
-
+type TDataTypes = "productsFullInfo" | "productId";
 
 const actGetWishlist = createAsyncThunk(
   "wishlist/actGetWishlist",
-  async (_, { rejectWithValue, fulfillWithValue, signal, getState }) => {
+  async (dataType: TDataTypes, { rejectWithValue, signal, getState }) => {
     const { auth } = getState() as RootState;
 
     try {
@@ -17,17 +17,22 @@ const actGetWishlist = createAsyncThunk(
       );
 
       if (!userWishlist.data.length) {
-        return fulfillWithValue([]);
+        return { data: [], dataType: "productsFullInfo" };
       }
 
-      const concatenetedItemId = userWishlist.data
-        .map((el) => `id=${el.productId}`)
-        .join("&");
+      if (dataType === "productId") {
+        const concatenetedItemId = userWishlist.data.map((el) => el.productId);
+        return { data: concatenetedItemId, dataType: "productId" };
+      } else {
+        const concatenetedItemId = userWishlist.data
+          .map((el) => `id=${el.productId}`)
+          .join("&");
 
-      const res = await GlobalBaseURL.get(`/products?${concatenetedItemId}`, {
-        signal,
-      });
-      return res.data;
+        const res = await GlobalBaseURL.get(`/products?${concatenetedItemId}`, {
+          signal,
+        });
+        return { data: res.data, dataType: "productsFullInfo" };
+      }
     } catch (err) {
       return rejectWithValue(axiosErrorHandler(err));
     }
