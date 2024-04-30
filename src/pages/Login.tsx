@@ -33,7 +33,7 @@ const Login = () => {
           {MessageLog_Req && (
             <Alert
               type="info"
-              message=" you can't access this page, Please login..! "
+              message=" you can't access last page, Please login..! "
             />
           )}
         </div>
