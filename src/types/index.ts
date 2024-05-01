@@ -6,6 +6,7 @@ import type {
   TResponseProducts,
   IProductsState,
 } from "./common";
+import {IOrderItem} from '../types/orders'
 import { isString } from "./guard";
 
 export {
@@ -15,5 +16,6 @@ export {
   ICategoriesState,
   TResponseProducts,
   IProductsState,
-  isString,
-};
+  isString
+};  export type { IOrderItem };
+
