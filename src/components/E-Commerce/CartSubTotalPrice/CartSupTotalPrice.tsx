@@ -5,7 +5,7 @@ type Props = {
 };
 
 const CartSupTotalPrice = ({ product }: Props) => {
-  const supTotal = product.reduce((acc, el) => {
+  const supTotal = product?.reduce((acc, el) => {
     const price = el.price;
     const quantity = el.quantity;
 
@@ -21,7 +21,7 @@ const CartSupTotalPrice = ({ product }: Props) => {
       <dl className="space-y-0.5 text-sm text-gray-700">
         <div className="flex justify-between !text-base font-medium">
           <dt>Total</dt>
-          <dd>${supTotal.toFixed(2)}</dd>
+          <dd>${supTotal?.toFixed(2)}</dd>
         </div>
       </dl>
     </>

@@ -8,6 +8,7 @@ import HeaderCounter from "./HeaderCounter/HeaderCounter";
 import Cart from "@assets/Svg/CartSvg";
 import { FaRegHeart } from "react-icons/fa";
 import useHeader from "@hooks/useHeader";
+import useGetProductsById from "@hooks/useGetProductsById";
 
 const Header = () => {
   const {
@@ -21,6 +22,8 @@ const Header = () => {
     showMenu,
     setShowMenu,
   } = useHeader();
+
+  const { product, status, error } = useGetProductsById();
 
   return (
     <header className="bg-white drop-shadow-xl ">
@@ -84,7 +87,14 @@ const Header = () => {
                 />
               </>
             )}
-            {!showCart && <CartMenu handleShowCart={handleShowCart} />}
+            {!showCart && (
+              <CartMenu
+                product={product}
+                error={error}
+                status={status}
+                handleShowCart={handleShowCart}
+              />
+            )}
             {/* Login */}
             {!accessToken ? (
               <div className="sm:flex sm:gap-4">

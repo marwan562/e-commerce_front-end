@@ -1,4 +1,3 @@
-import useGetProductsById from "@hooks/useGetProductsById";
 import { useNavigate } from "react-router-dom";
 import Loanding from "@componenets/feedback/Loading/Loanding";
 import CartItemList from "@componenets/E-Commerce/CartItemList/CartItemList";
@@ -6,15 +5,18 @@ import { cartItemChangeQuantity } from "@toolkit/Cart/CartSlice";
 import { useAppDispatch } from "@toolkit/hooks";
 import CartSupTotalPrice from "@componenets/E-Commerce/CartSubTotalPrice/CartSupTotalPrice";
 import LottieHandler from "../../../feedback/LottieHandler/LottieHandler";
+import { TError, TResponseProducts, TStatus } from "@types";
 
 type Props = {
   handleShowCart: () => void;
+  product: TResponseProducts[];
+  status: TStatus;
+  error: TError;
 };
 
-const CartMenu = ({ handleShowCart }: Props) => {
+const CartMenu = ({ handleShowCart, product, status, error }: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { product, status, error } = useGetProductsById();
 
   const changeQuantityHandler = (id: number, quantity: number) => {
     dispatch(cartItemChangeQuantity({ id, quantity }));

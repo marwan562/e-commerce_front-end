@@ -11,7 +11,7 @@ type Props = {
 
 const Cartitems = ({ product, changeQuantityHandler }: Props) => {
   const productResult =
-    product.length > 0 ? (
+    product?.length > 0 ? (
       product.map((item) => (
         <CartItemList
           key={item.id}
