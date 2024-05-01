@@ -60,6 +60,10 @@ const CartSlice = createSlice({
     cleanProductsFullInfo: (state) => {
       state.productsFullInfo = [];
     },
+    clearCartAferPlaceOrder: (state) => {
+      state.productsFullInfo = [];
+      state.items = {};
+    },
   },
   extraReducers(builder) {
     builder.addCase(actGetProductsById.pending, (state) => {
@@ -88,6 +92,7 @@ export const {
   decrementQuantity,
   cartItemChangeQuantity,
   cleanProductsFullInfo,
+  clearCartAferPlaceOrder
 } = CartSlice.actions;
 
 export default CartSlice.reducer;

@@ -6,7 +6,7 @@ import { axiosErrorHandler } from "@utils/index";
 
 const actPlaceOrder = createAsyncThunk(
   "orders/actPlaceOrder",
-  async (supTotal, thunkAPI) => {
+  async (supTotal:number, thunkAPI) => {
     const { getState, rejectWithValue } = thunkAPI;
     const { auth, cart } = getState() as RootState;
 

@@ -20,6 +20,7 @@ const useGetProductsByPrefix = () => {
   }));
 
   useEffect(() => {
+    
     const Promise = dispatch(actGetProductsByCatPrefix(prefix as string));
 
     return () => {

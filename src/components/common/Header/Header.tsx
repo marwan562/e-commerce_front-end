@@ -8,7 +8,6 @@ import HeaderCounter from "./HeaderCounter/HeaderCounter";
 import Cart from "@assets/Svg/CartSvg";
 import { FaRegHeart } from "react-icons/fa";
 import useHeader from "@hooks/useHeader";
-import useGetProductsById from "@hooks/useGetProductsById";
 
 const Header = () => {
   const {
@@ -23,8 +22,6 @@ const Header = () => {
     setShowMenu,
   } = useHeader();
 
-  const { product, status, error } = useGetProductsById();
-
   return (
     <header className="bg-white drop-shadow-xl ">
       <div className=" mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -35,6 +32,7 @@ const Header = () => {
               <Logo />
             </NavLink>
           </div>
+          
 
           <div className="hidden md:block">
             <nav aria-label="Global">
@@ -87,14 +85,7 @@ const Header = () => {
                 />
               </>
             )}
-            {!showCart && (
-              <CartMenu
-                product={product}
-                error={error}
-                status={status}
-                handleShowCart={handleShowCart}
-              />
-            )}
+            {!showCart && <CartMenu handleShowCart={handleShowCart} />}
             {/* Login */}
             {!accessToken ? (
               <div className="sm:flex sm:gap-4">
@@ -151,3 +142,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
