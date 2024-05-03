@@ -1,4 +1,5 @@
 import { TResponseProducts } from "@types";
+import CartPlaceOrder from "../CartPlaceOrder/CartPlaceOrder";
 
 type Props = {
   product: TResponseProducts[];
@@ -6,7 +7,7 @@ type Props = {
 
 const CartSupTotalPrice = ({ product }: Props) => {
   const supTotal = product?.reduce((acc, el) => {
-    const price = el.price;
+    const price = el.price as number;
     const quantity = el.quantity;
 
     if (quantity && typeof quantity === "number") {
@@ -18,6 +19,7 @@ const CartSupTotalPrice = ({ product }: Props) => {
 
   return (
     <>
+      <CartPlaceOrder totalPrice={supTotal}/>
       <dl className="space-y-0.5 text-sm text-gray-700">
         <div className="flex justify-between !text-base font-medium">
           <dt>Total</dt>

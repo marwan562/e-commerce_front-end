@@ -1,8 +1,7 @@
 import { TResponseProducts } from "./common";
 
-export type IOrderItem = {
-  id: number;
-  userId: number;
+export type IOrderItem   = {
   items: TResponseProducts[];
   supTotal: number;
+  id: number;
 };

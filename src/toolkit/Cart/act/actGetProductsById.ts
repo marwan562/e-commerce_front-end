@@ -7,7 +7,7 @@ import { axiosErrorHandler } from "@utils/index";
 export const actGetProductsById = createAsyncThunk(
   "CartSlice/actGetProductsById",
   async (_, thunkAPI) => {
-    const { fulfillWithValue, getState, rejectWithValue } = thunkAPI;
+    const { fulfillWithValue, getState, rejectWithValue, signal } = thunkAPI;
 
     const { cart } = getState() as RootState;
     const itemsId = Object.keys(cart.items);
@@ -19,7 +19,8 @@ export const actGetProductsById = createAsyncThunk(
     try {
       const concatenetedItemsId = itemsId.map((el) => `id=${el}`).join("&");
       const res = await GlobalBaseURL.get<TResponseProducts[]>(
-        `products?${concatenetedItemsId}`
+        `products?${concatenetedItemsId}`,
+        { signal }
       );
       return res.data;
     } catch (err) {

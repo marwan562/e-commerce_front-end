@@ -17,10 +17,14 @@ const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
 const Cart = lazy(() => import("@pages/Cart"));
 const Wishlist = lazy(() => import("@pages/Wishlist"));
+const Orders = lazy(() => import("@pages/Orders"));
+
+//error
 import ErrorPage from "@pages/ErrorPage";
 
 //auth protected route
 import ProtectedRoute from "@componenets/Auth/ProtectedRoute";
+import ProfileLayout from "@layouts/ProfileLayout/ProfileLayout";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -83,12 +87,22 @@ const AppRouter = () => {
           element: <Register />,
         },
         {
-          path: "/user/profile",
+          path: "profile",
           element: (
             <ProtectedRoute>
-              <Profile />
+              <ProfileLayout />
             </ProtectedRoute>
           ),
+          children: [
+            {
+              index: true,
+              element: <Profile />,
+            },
+            {
+              path: "orders",
+              element: <Orders />,
+            },
+          ],
         },
       ],
     },

@@ -1,13 +1,14 @@
 import Logo from "@assets/Svg/LogoSvg";
 import ShowMenu from "@componenets/common/Header/smScreenMenu/ShowMenu";
 import ButtonMenu from "@componenets/common/Header/smScreenMenu/ButtonMenu";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { handleActiveLogin, handleActiveRegister, handleStyleActive } from ".";
-import CartMenu from "./CartMenu/CartMenu";
+// import CartMenu from "./CartMenu/CartMenu";
 import HeaderCounter from "./HeaderCounter/HeaderCounter";
 import Cart from "@assets/Svg/CartSvg";
 import { FaRegHeart } from "react-icons/fa";
 import useHeader from "@hooks/useHeader";
+import UserInfo from "./UserInfo/UserInfo";
 
 const Header = () => {
   const {
@@ -15,7 +16,7 @@ const Header = () => {
     WishlistQuantityItems,
     handleShowCart,
     CartQuantityItems,
-    showCart,
+    // showCart,
     user,
     authLogoutHandler,
     showMenu,
@@ -32,7 +33,6 @@ const Header = () => {
               <Logo />
             </NavLink>
           </div>
-          
 
           <div className="hidden md:block">
             <nav aria-label="Global">
@@ -73,19 +73,21 @@ const Header = () => {
                   title="wishlist"
                   totalQuantityitems={WishlistQuantityItems}
                   SvgIcon={<FaRegHeart />}
+                  navigated="/wishlist"
                 />
                 {/* Space Line */}
                 <div className=" text-3xl mb-[6px]">|</div>
                 {/* Cart Menu */}
                 <HeaderCounter
                   title="cart"
+                  navigated="/cart"
                   handleShowCart={handleShowCart}
                   totalQuantityitems={CartQuantityItems}
                   SvgIcon={<Cart />}
                 />
               </>
             )}
-            {!showCart && <CartMenu handleShowCart={handleShowCart} />}
+            {/* {!showCart && <CartMenu handleShowCart={handleShowCart} />} */}
             {/* Login */}
             {!accessToken ? (
               <div className="sm:flex sm:gap-4">
@@ -100,31 +102,7 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <div className="dropdown dropdown-hover">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn m-1 font-semibold"
-                >
-                  <span className="  text-[19px] font-medium "> Welcome:</span>{" "}
-                  {user?.first_name} {user?.last_name}
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link to={"/user/profile"}>Profile</Link>
-                  </li>
-                  <li>
-                    <a>Orders</a>
-                  </li>
-                  <hr />
-                  <li onClick={authLogoutHandler}>
-                    <a>Logout</a>
-                  </li>
-                </ul>
-              </div>
+              <UserInfo authLogoutHandler={authLogoutHandler} user={user} />
             )}
 
             <div className="block md:hidden ">
@@ -142,5 +120,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

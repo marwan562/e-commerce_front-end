@@ -21,7 +21,7 @@ export type TResponseProducts = {
   price: number;
   cat_prefix: string;
   img: string;
-  quantity?: number;
+  quantity: number;
   max: number;
   isLiked: boolean;
 };
@@ -33,13 +33,13 @@ export interface IProductsState {
 }
 
 export interface IResUser {
-  accessToken: string 
+  accessToken: string;
   user: {
     id: number;
     first_name: string;
     last_name: string;
     email: string;
-  } 
+  };
 }
 
 export interface IFormData {

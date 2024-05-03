@@ -6,6 +6,7 @@ import { cartItemChangeQuantity } from "@toolkit/Cart/CartSlice";
 import { useAppDispatch } from "@toolkit/hooks";
 import CartSupTotalPrice from "@componenets/E-Commerce/CartSubTotalPrice/CartSupTotalPrice";
 import LottieHandler from "../../../feedback/LottieHandler/LottieHandler";
+import CartInfo from "@componenets/E-Commerce/CartInfo/CartInfo";
 
 type Props = {
   handleShowCart: () => void;
@@ -51,11 +52,21 @@ const CartMenu = ({ handleShowCart }: Props) => {
           <Loanding Type="cartMenu" status={status} error={error}>
             {product.length > 0 ? (
               product.map((el) => (
-                <CartItemList
-                  changeQuantityHandler={changeQuantityHandler}
+                <CartInfo
+                  id={el.id}
+                  title={el.title}
+                  img={el.img}
+                  price={el.price}
                   key={el.id}
-                  {...el}
-                />
+                >
+                      <CartItemList
+                        changeQuantityHandler={changeQuantityHandler}
+                        key={el.id}
+                        id={el.id}
+                        quantity={el.quantity}
+                        max={el.max}
+                      />
+                </CartInfo>
               ))
             ) : (
               <LottieHandler type="empty" />

@@ -10,7 +10,7 @@ const actGetCategories = createAsyncThunk(
 
     try {
       const res = await GlobalBaseURL.get<TResponseCategories[]>(
-        "http://localhost:5005/categories",
+        "/categories",
         { signal }
       );
       const data = res.data;
@@ -22,3 +22,6 @@ const actGetCategories = createAsyncThunk(
 );
 
 export default actGetCategories;
+
+
+

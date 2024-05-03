@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@material-tailwind/html": "^2.2.2",
+    "@material-tailwind/react": "^2.1.9",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "lottie-react": "^2.4.0",

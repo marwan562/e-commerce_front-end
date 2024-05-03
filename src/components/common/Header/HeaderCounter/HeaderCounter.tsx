@@ -6,6 +6,7 @@ type Props = {
   totalQuantityitems: number;
   SvgIcon: ReactNode;
   title: string;
+  navigated: string;
 };
 
 const HeaderCounter = ({
@@ -13,12 +14,13 @@ const HeaderCounter = ({
   totalQuantityitems,
   SvgIcon,
   title,
+  navigated,
 }: Props) => {
   const [isAnimate, setIsAnimate] = useState<boolean>(false);
   const navigate = useNavigate();
   //handle onclick wishlist
   const handleWishlist = () => {
-    navigate("/wishlist");
+    navigate(navigated);
   };
 
   const handleOnClick = title === "wishlist" ? handleWishlist : handleShowCart; //handle onclick cart

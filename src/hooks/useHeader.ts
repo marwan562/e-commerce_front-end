@@ -25,6 +25,7 @@ const useHeader = () => {
 
   const handleShowCart = () => {
     setShowCart(!showCart);
+    navigate('/cart')
   };
 
   useEffect(() => {

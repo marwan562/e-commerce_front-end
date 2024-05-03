@@ -1,8 +1,9 @@
 import { TResponseProducts } from "@types";
-import CartCheckout from "../CartCheckout/CartCheckout";
+import CartPlaceOrder from "../CartPlaceOrder/CartPlaceOrder";
 import CartSupTotalPrice from "../CartSubTotalPrice/CartSupTotalPrice";
 import CartItemList from "../CartItemList/CartItemList";
 import LottieHandler from "@componenets/feedback/LottieHandler/LottieHandler";
+import CartInfo from "../CartInfo/CartInfo";
 
 type Props = {
   product: TResponseProducts[];
@@ -13,14 +14,16 @@ const Cartitems = ({ product, changeQuantityHandler }: Props) => {
   const productResult =
     product?.length > 0 ? (
       product.map((item) => (
-        <CartItemList
-          key={item.id}
-          {...item}
-          changeQuantityHandler={changeQuantityHandler}
-        />
+        <CartInfo key={item.id} {...item}>
+          <CartItemList
+            key={item.id}
+            {...item}
+            changeQuantityHandler={changeQuantityHandler}
+          />
+        </CartInfo>
       ))
     ) : (
-      <LottieHandler type='empty' />
+      <LottieHandler type="empty" />
     );
   return (
     <section>
@@ -38,7 +41,7 @@ const Cartitems = ({ product, changeQuantityHandler }: Props) => {
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
               <div className="w-screen max-w-lg space-y-4">
                 <CartSupTotalPrice product={product} />
-                <CartCheckout />
+                <CartPlaceOrder />
               </div>
             </div>
           </div>

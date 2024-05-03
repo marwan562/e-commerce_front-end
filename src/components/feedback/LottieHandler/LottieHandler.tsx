@@ -3,12 +3,14 @@ import loading from "@assets/LottieFiles/loading.json";
 import empty from "@assets/LottieFiles/empty.json";
 import notFound from "@assets/LottieFiles/notFound.json";
 import error from "@assets/LottieFiles/error.json";
+import success from "@assets/LottieFiles/sucess.json";
 
 const lottieTypes = {
   loading,
   empty,
   error,
   notFound,
+  success,
 };
 
 type TProps = {
